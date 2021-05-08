@@ -28,11 +28,11 @@ Define all colors used in this template
   margin:8cm 0 3cm 0;
 
   @top-left{
- 	 content:element(header);
+  	content:element(header);
   }
 
   @bottom-left{
-	  content:element(footer);
+  	content:element(footer);
   }
 }
 
@@ -78,7 +78,7 @@ the background color goes to the edges of the document.
 As mentioned above in the comment for the @page the position property with the 
 value running(header) makes this HTML element float into the top left page margin
 box. This page margin box repeats on every page in case we would have a multi-page
-estimate.
+invoice.
 */
 header{
   height:8cm;
@@ -141,20 +141,11 @@ header .logoAndName svg{
 }
 
 /*
-To ensure the top right section "ESTIMATE" starts on the same level as the Logo &
+To ensure the top right section "Invoice #100" starts on the same level as the Logo &
 Name we set a padding top of 1cm for this element.
 */
-header .headerSection .estimateDetails{
-  padding-top:1cm;
-}
-
-/*
-In the second row of header sections, we find the "ISSUED TO" area where we also
-make use of flexbox to achive the desired layout.
-*/
-header .headerSection .issuedTo{
-  display:flex;
-  justify-content:space-between;
+header .headerSection .invoiceDetails{
+  padding-top:.5cm;
 }
 
 /*
@@ -162,9 +153,16 @@ The H3 element "ISSUED TO" gets another 25mm margin to the right to keep some
 space between this header and the client's address.
 Additionally this header text gets the hightlight color as font color.
 */
-header .headerSection .issuedTo h3{
+header .headerSection h3{
   margin:0 .75cm 0 0;
   color:var(--highlight-color);
+}
+
+/*
+Put some margin between the "DUE DATE" and "AMOUNT" headings.
+*/
+header .headerSection div:last-of-type h3:last-of-type{
+  margin-top:.5cm;
 }
 
 /*
@@ -186,7 +184,17 @@ header p{
 }
 
 /*
-Heading of level 2 and 3 ("ESTIMATE" and "ISSUED TO") need to be written in 
+The invoice details should not be uppercase and also be aligned to the right.
+*/
+header .invoiceDetails,
+header .invoiceDetails h2{
+  text-align:right;
+  font-size:1em;
+  text-transform:none;
+}
+
+/*
+Heading of level 2 and 3 ("DUE DATE", "AMOUNT" and "INVOICE TO") need to be written in 
 uppercase, so we use the text-transform property for that.
 */
 header h2,
@@ -241,7 +249,6 @@ and bottom of 2mm and a border bottom of .5mm as a row separator.
 */
 main table tbody td{
   padding:2mm 0;
-  border-bottom:0.5mm solid var(--table-row-separator-color);
 }
 
 /*
@@ -289,7 +296,6 @@ these get a padding left of 1cm to give the highlight color some space.
 */
 main table.summary th{
   padding:4mm 0 4mm 1cm;
-  border-bottom:0;
 }
 
 /*
@@ -315,11 +321,26 @@ aside{
 }
 
 /*
-The content itself is shown in 2 columns.
+The content itself is shown in 2 columns we use flexbox for this.
 */
-aside p{
+aside > div{
+  display:flex;
+  justify-content:space-between;
+}
+
+/*
+Each "column" has a width of 45% of the document.
+*/
+aside > div > div{
+  width:45%;
+}
+
+/*
+The list with the payment options has no bullet points and no margin.
+*/
+aside > div > div ul{
+  list-style-type:none;
   margin:0;
-  column-count:2;
 }
 
 /*
@@ -331,7 +352,7 @@ the background color goes to the edges of the document.
 As mentioned above in the comment for the @page the position property with the 
 value running(footer) makes this HTML element float into the bottom left page margin
 box. This page margin box repeats on every page in case we would have a multi-page
-estimate.
+invoice.
 
 The content inside the footer is aligned with the help of line-height 3cm and a 
 flexbox for the child elements.

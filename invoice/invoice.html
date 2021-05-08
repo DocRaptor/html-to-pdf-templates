@@ -8,14 +8,11 @@
       </svg>
       <h1>Logo &amp; Name</h1>
     </div>
-    <!-- Details about the estimation are on the right top side of each page. -->
-    <div>
-      <h2>Estimate</h2>
+    <!-- Details about the invoice are on the right top side of each page. -->
+    <div class="invoiceDetails">
+      <h2>Invoice #100</h2>
       <p>
-        <b>Date Issued</b> 05/10/2021
-      </p>
-      <p>
-        <b>Project No.</b> 01
+        07 March 2021
       </p>
     </div>
   </div>
@@ -23,8 +20,8 @@
   <hr />
   <div class="headerSection">
     <!-- The clients details come on the left side below the logo and company name. -->
-    <div class="issuedTo">
-      <h3>Issued to</h3>
+    <div>
+      <h3>Invoice to</h3>
       <p>
         <b>Client Name</b>
         <br />
@@ -39,12 +36,15 @@
         317.123.8765
       </p>
     </div>
-    <!-- Additional notes can be placed below the estimation details. -->
+    <!-- Additional details can be placed below the invoice details. -->
     <div>
+      <h3>Due Date</h3>
       <p>
-        <b>Notes</b>
-        <br />
-        Morbi euismod scelerisque pellentesque.
+        <b>07 April 2021</b>
+      </p>
+      <h3>Amount</h3>
+      <p>
+        <b>$3,500</b>
       </p>
     </div>
   </div>
@@ -158,12 +158,23 @@
     </tr>
   </table>
 </main>
-<!-- Within the aside tag we will put the terms and conditions which shall be shown below the estimate table. -->
+<!-- Within the aside tag we will put the terms and conditions which shall be shown below the invoice table. -->
 <aside>
   <!-- Before the terms and conditions we will add another blue divider line with the help of the HR tag. -->
   <hr />
-  <b>Terms &amp; Conditions</b>
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi euismod scelerisque pellentesque. Nullam at urna cursus, efficitur sapien vitae, porttitor tellus. Aliquam quis semper nisi. Morbi euismod scelerisque pellentesque. Nullam at urna cursus, efficitur sapien vitae, porttitor tellus.
-  </p>
+  <div>
+    <div>
+      <b>Terms &amp; Conditions</b>
+      <p>
+        Please make payment within 30 days of issue of the invoice.
+      </p>
+    </div>
+    <div>
+      <b>Payment Options</b>
+      <ul>
+        <li>Paypal</li>
+        <li>Credit Card</li>
+      </ul>
+    </div>
+  </div>
 </aside>
