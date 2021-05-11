@@ -1,0 +1,134 @@
+<!-- The header element will appear on the top of each page of this packing slip document. -->
+<header>
+  <div class="headerSection">
+    <!-- As a logo we take an SVG element and add the name in an standard H1 element behind it. -->
+    <div class="logoAndName">
+      <svg>
+        <circle cx="50%" cy="50%" r="40%" stroke="black" stroke-width="3" fill="black" />
+      </svg>
+      <h1>Logo &amp; Name</h1>
+    </div>
+    <!-- Details about the order are on the right top side of each page. -->
+    <div>
+      <h2>Packing Slip</h2>
+      <p>
+        <b>Order</b> #100
+      </p>
+      <p>
+        <b>Order Date</b> 05/10/2021
+      </p>
+      <p>
+        <b>Shipping</b> USPS 000997562589
+      </p>
+      <p>
+        <b>Total Items</b> 02
+      </p>
+    </div>
+  </div>
+  <!-- The two header rows are divided by an blue line, we use the HR element for this. -->
+  <hr />
+  <div class="headerSection">
+    <!-- The billing address comes on the left side below the logo and company name. -->
+    <div class="billTo">
+      <h3>Bill to</h3>
+      <p>
+        <b>Client Name</b>
+        <br />
+        123 Alphabet Road, Suite 01
+        <br />
+        Indianapolis, IN 46260
+        <br />
+        <a href="mailto:clientname@clientwebsite.com">
+          clientname@clientwebsite.com
+        </a>
+        <br />
+        317.123.8765
+      </p>
+    </div>
+    <!-- The shipping address can be placed below the estimation details. -->
+    <div class="shipTo">
+      <h3>Ship to</h3>
+      <p>
+        <b>Client Name</b>
+        <br />
+        123 Alphabet Road, Suite 01
+        <br />
+        Indianapolis, IN 46260
+        <br />
+        <a href="mailto:clientname@clientwebsite.com">
+          clientname@clientwebsite.com
+        </a>
+        <br />
+        317.123.8765
+      </p>
+    </div>
+  </div>
+</header>
+
+<!-- The footer contains the company's website and address. To align the address details we will use flexbox in the CSS style. -->
+<footer>
+    <a href="https://companywebsite.com">
+      companywebsite.com
+    </a>
+    <a href="mailto:company@website.com">
+      company@website.com
+    </a>
+    <span>
+      317.123.8765
+    </span>
+    <span>
+      123 Alphabet Road, Suite 01, Indianapolis, IN 46260
+    </span>
+</footer>
+
+<!-- In the main section the table for the separate items is added. Also the notes like gift wrapping are included in the MAIN section. -->
+<main>
+  <table>
+    <!-- A THEAD element is used to ensure the header of the table is repeated if it consumes more than one page. -->
+    <thead>
+      <tr>
+        <th>Item Description</th>
+        <th>Qty</th>
+      </tr>
+    </thead>
+    <!-- The single packing slip items are all within the TBODY of the table. -->
+    <tbody>
+      <tr>
+        <td>
+          <b>Item Names Goes Here</b>
+          <br />
+          PRS340011-DH
+        </td>
+        <td>
+          2
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Lorem Ipsum</b>
+          <br />
+          PRS367240-DH
+        </td>
+        <td>
+          1
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- Additional notes below the shipping item table -->
+  <div class="notes">
+    <b>Notes</b>
+    <p>
+      Gift wrap items
+    </p>
+  </div>
+</main>
+<!-- Within the aside tag we will put a thank you note which shall be shown below the packing slip table. -->
+<aside>
+  <!-- Before the note we will add another blue divider line with the help of the HR tag. -->
+  <hr />
+  <b>Thanks for your business!</b>
+  <p>
+    If you have any questions please contact us at <a href="mailto:help@company.com">help@company.com</a>.
+  </p>
+</aside>
