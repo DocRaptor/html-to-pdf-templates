@@ -1,0 +1,180 @@
+<!-- The header element will appear on the top of each page of this invoice document. -->
+<header>
+  <div class="headerSection">
+    <!-- As a logo we take an SVG element and add the name in an standard H1 element behind it. -->
+    <div class="logoAndName">
+      <svg>
+        <circle cx="50%" cy="50%" r="40%" stroke="black" stroke-width="3" fill="black" />
+      </svg>
+      <h1>Logo &amp; Name</h1>
+    </div>
+    <!-- Details about the invoice are on the right top side of each page. -->
+    <div class="invoiceDetails">
+      <h2>Invoice #100</h2>
+      <p>
+        07 March 2021
+      </p>
+    </div>
+  </div>
+  <!-- The two header rows are divided by an blue line, we use the HR element for this. -->
+  <hr />
+  <div class="headerSection">
+    <!-- The clients details come on the left side below the logo and company name. -->
+    <div>
+      <h3>Invoice to</h3>
+      <p>
+        <b>Client Name</b>
+        <br />
+        123 Alphabet Road, Suite 01
+        <br />
+        Indianapolis, IN 46260
+        <br />
+        <a href="mailto:clientname@clientwebsite.com">
+          clientname@clientwebsite.com
+        </a>
+        <br />
+        317.123.8765
+      </p>
+    </div>
+    <!-- Additional details can be placed below the invoice details. -->
+    <div>
+      <h3>Due Date</h3>
+      <p>
+        <b>07 April 2021</b>
+      </p>
+      <h3>Amount</h3>
+      <p>
+        <b>$3,500</b>
+      </p>
+    </div>
+  </div>
+</header>
+
+<!-- The footer contains the company's website and address. To align the address details we will use flexbox in the CSS style. -->
+<footer>
+    <a href="https://companywebsite.com">
+      companywebsite.com
+    </a>
+    <a href="mailto:company@website.com">
+      company@website.com
+    </a>
+    <span>
+      317.123.8765
+    </span>
+    <span>
+      123 Alphabet Road, Suite 01, Indianapolis, IN 46260
+    </span>
+</footer>
+
+<!-- In the main section the table for the separate items is added. Also we add another table for the summary, so subtotal, tax and total amount. -->
+<main>
+  <table>
+    <!-- A THEAD element is used to ensure the header of the table is repeated if it consumes more than one page. -->
+    <thead>
+      <tr>
+        <th>Item Description</th>
+        <th>Rate</th>
+        <th>Amount</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <!-- The single invoice items are all within the TBODY of the table. -->
+    <tbody>
+      <tr>
+        <td>
+          <b>Item Names Goes Here</b>
+          <br />
+          Description goes here
+        </td>
+        <td>
+          $100
+        </td>
+        <td>
+          4
+        </td>
+        <td>
+          $400.00
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Lorem Ipsum</b>
+          <br />
+          Description goes here
+        </td>
+        <td>
+          $250
+        </td>
+        <td>
+          2
+        </td>
+        <td>
+          $500.00
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Dolor Set Amit Caslum</b>
+          <br />
+          Description goes here
+        </td>
+        <td>
+          $300
+        </td>
+        <td>
+          1
+        </td>
+        <td>
+          $300.00
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- The summary table contains the subtotal, tax and total amount. -->
+  <table class="summary">
+    <tr>
+      <th>
+        Subtotal
+      </th>
+      <td>
+        $1200.00
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Tax 4.7%
+      </th>
+      <td>
+        $000.00
+      </td>
+    </tr>
+    <tr class="total">
+      <th>
+        Total
+      </th>
+      <td>
+        $12,000.00
+      </td>
+    </tr>
+  </table>
+</main>
+<!-- Within the aside tag we will put the terms and conditions which shall be shown below the invoice table. -->
+<aside>
+  <!-- Before the terms and conditions we will add another blue divider line with the help of the HR tag. -->
+  <hr />
+  <div>
+    <div>
+      <b>Terms &amp; Conditions</b>
+      <p>
+        Please make payment within 30 days of issue of the invoice.
+      </p>
+    </div>
+    <div>
+      <b>Payment Options</b>
+      <ul>
+        <li>Paypal</li>
+        <li>Credit Card</li>
+      </ul>
+    </div>
+  </div>
+</aside>
