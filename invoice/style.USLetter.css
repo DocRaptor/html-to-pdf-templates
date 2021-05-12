@@ -245,7 +245,7 @@ main table thead th:last-of-type{
 
 /*
 The items itself are all with the TBODY element, each cell gets a padding top
-and bottom of 2mm and a border bottom of .5mm as a row separator.
+and bottom of 2mm.
 */
 main table tbody td{
   padding:2mm 0;
