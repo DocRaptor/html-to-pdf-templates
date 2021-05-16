@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:wght@400;700&display=swap');
+
+:root{
+  --main-color: #CEC3BA;
+  --text-color: #303E48;
+  --circle-color: rgba(0, 0, 0, .5);
+}
+
+@page{
+  size:USLetter;
+  margin:1.5cm 1.5cm 2cm 1.5cm;
+  
+  @bottom-left{
+  	content:element(footer);
+    background-color:var(--main-color);
+  }
+  
+  @bottom-right-corner{
+    content:"";
+    background-color:var(--main-color);
+  }
+  
+  @bottom-left-corner{
+    content:"";
+    background-color:var(--main-color);
+  }
+}
+
+@page:first{
+  margin:0;
+  
+  @bottom-left{
+    content:"";
+  }
+}
+
+body{
+  color:var(--text-color);
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1,
+h2,
+i{
+  font-family: 'Crimson Pro', serif;
+}
+
+/*
+The links in the document should not be highlighted by an different color and underline
+instead we use the color value inherit to get the current texts color.
+*/
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+header h1{
+  font-family: 'Montserrat', sans-serif;
+  position:relative;
+  left:50%;
+  top:50%;
+  transform:translateX(-50%) translateY(-50%);
+  text-align:center;
+  text-transform:uppercase;
+  z-index:2;
+  width:6cm;
+  margin:0;
+}
+
+header{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translateX(-50%) translateY(-50%);
+  background-color:var(--circle-color);
+  border-radius:100%;
+  display:inline-block;
+  width:12cm;
+  height:12cm;
+}
+
+header:after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translateX(-50%) translateY(-50%);
+  border:1mm solid var(--circle-color);
+  border-radius:100%;
+  display:inline-block;
+  width:13cm;
+  height:13cm;
+  
+}
+
+section{
+  page-break-inside:avoid;
+}
+
+section h1{
+  font-style:italic;
+}
+
+section:not(.specialItems) h1:after{
+  content:leader("_");
+  color:var(--main-color);
+}
+
+section .sectionContent{
+  display:flex;
+  justify-content:space-between;
+}
+
+section .images{
+  width:35%;
+  border:1px solid red;
+}
+
+section .items{
+  width:55%;
+}
+
+section .items ul{
+  list-style-type:none;
+  margin:0;
+}
+
+section .items ul li:not(:first-child){
+  margin:6mm 0;
+}
+
+section .items ul li i{
+  display:block;
+  margin-top:2mm;
+  width:80%;
+  font-size:10pt;
+}
+
+section .items ul li span{
+  text-transform:uppercase;
+  font-weight:bold;
+}
+
+section .items ul li span:not(.price):after{
+  content:leader("_");
+  color:var(--main-color);
+}
+
+section .items ul li span.price{
+  float:right;
+}
+
+section.specialItems{
+  border:.5mm solid var(--main-color);
+  padding:6mm;
+  margin-top:6mm;
+}
+
+section.specialItems h1{
+  margin-top:0;
+}
+
+section.specialItems h1:before{
+  content:leader("_");
+  color:var(--main-color);
+}
+
+.note h3{
+  margin:12mm 0 0 0;
+  font-size:10pt;
+}
+
+footer{
+  position:running(footer);
+  display:flex;
+  justify-content:space-between;
+  font-size:8pt;
+}
+
+footer div:not(:first-child){
+  display:flex;
+  justify-content:space-between;
+}
+
+footer div:not(:first-child) b{
+  margin-right:2mm;
+}
+
+footer b{
+  text-transform:uppercase;
+}
+
+.menuPages{
+  page-break-before:always;
+}
