@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+:root{
+  --main-highlight-color:#60D0E4;
+  --secondary-highlight-color:#B8E6F1;
+  --list-point-color:#C2C6CA;
+  --text-color:#303E48;
+}
+
+@page{
+  size:USLetter;
+  margin:5cm 1.2cm 1.2cm 8cm;
+  
+  @top-left-corner{
+    content:"";
+    background-color:var(--main-highlight-color);
+  }
+  
+  @top-left{
+    content:element(header);
+    margin-left:-8cm;
+    width:210mm;
+    background-color:var(--main-highlight-color);
+  }
+  
+  @top-right-corner{
+    content:"";
+    background-color:var(--main-highlight-color);
+  }
+  
+  @left-top{
+    content:element(aside);
+    background-color:var(--secondary-highlight-color);
+  }
+  
+  @bottom-left-corner{
+    content:"";
+    background-color:var(--secondary-highlight-color);
+  }
+}
+
+body{
+  font-family: 'Montserrat', sans-serif;
+  font-size:10pt;
+  color:var(--text-color);
+}
+
+h3,
+h4{
+  font-size:10pt;
+  margin:0;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+header{
+  position:running(header);
+  padding:1cm 1.5cm 1cm 1.5cm;
+  display:flex;
+  justify-content:space-between;
+  align-items:top;
+}
+
+header div{
+  text-align:right;
+  line-height:16pt;
+  text-transform:uppercase;
+}
+
+header div h2{
+  font-size:12pt;
+  margin:0;
+  text-transform:none;
+}
+
+aside{
+  position:running(aside);
+  padding:1.5cm;
+  text-align:left;
+}
+
+aside hr{
+  margin:2cm 0 .5cm 0;
+  border:0;
+  border-top:.5mm solid var(--text-color);
+  height:0;
+}
+
+aside h3 + h4{
+  margin-top:2.5mm;
+}
+
+aside h4{
+  margin-top:5mm;
+}
+
+aside a{
+  display:block;
+  margin-top:6cm;
+  font-weight:bold;
+  text-transform:uppercase;
+}
+
+aside a span{
+  text-transform:none;
+}
+
+aside p{
+  margin:0;
+}
+
+main{
+  margin:1.2cm 0 0 1.2cm;
+}
+
+main h3{
+  margin-top:1cm;
+}
+
+main ol{
+  list-style-type:none;
+  counter-reset:listitems;
+  margin-left:1cm;
+}
+
+main ol > li{
+  counter-increment:listitems;
+}
+
+main ol > li:before{
+  content:"0" counter(listitems);
+  float:left;
+  margin-left:-1cm;
+  font-size:18pt;
+  color:var(--list-point-color);
+}
+
+main ul{
+  margin-left:.5cm;
+}
+
+main ol li h4 + p{
+  margin:0;
+}
+
+main .company{
+  text-transform:uppercase;
+}
+
+h3{
+  color:var(--main-highlight-color);
+  text-transform:uppercase;
+}
