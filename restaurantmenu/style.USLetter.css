@@ -3,7 +3,7 @@
 :root{
   --main-color: #CEC3BA;
   --text-color: #303E48;
-  --circle-color: rgba(0, 0, 0, .5);
+  --circle-color: rgba(255, 255, 255, .8);
 }
 
 @page{
@@ -28,6 +28,8 @@
 
 @page:first{
   margin:0;
+  background-image:url("./images/cover.png");
+  background-size:cover;
   
   @bottom-left{
     content:"";
@@ -95,14 +97,17 @@ header:after{
 
 section{
   page-break-inside:avoid;
+  padding-bottom:1cm;
 }
 
 section h1{
   font-style:italic;
+  margin:1cm 0;
 }
 
 section:not(.specialItems) h1:after{
-  content:leader("_");
+  font-family: 'Montserrat', sans-serif;
+  content:leader(solid);
   color:var(--main-color);
 }
 
@@ -112,17 +117,87 @@ section .sectionContent{
 }
 
 section .images{
-  width:35%;
-  border:1px solid red;
+  width:40%;
+}
+
+section .images.img01{
+  background-image:url("./images/pizza.png");
+  background-size:cover;
+}
+
+section .images .img02,
+section .images .img03,
+section .images .img08,
+section .images .img09{
+  background-size:cover;
+  display:block;
+  height:47.5%;
+}
+
+section .images .img02{
+  background-image:url("./images/pizza.png");
+  margin-bottom:5%;
+}
+
+section .images .img03{
+  background-image:url("./images/cover.png");
+}
+
+section .images .img04,
+section .images .img05,
+section .images .img06,
+section .images .img07{
+  background-size:cover;
+  display:inline-block;
+  width:47.5%;
+  height:47.5%;
+}
+
+section .images .img04,
+section .images .img05{
+  margin-bottom:5%;
+}
+
+section .images .img04,
+section .images .img06{
+  float:left;
+}
+
+section .images .img05,
+section .images .img07{
+  float:right;
+}
+
+section .images .img04,
+section .images .img05{
+  background-image:url("./images/pizza.png");
+}
+
+section .images .img06,
+section .images .img07{
+  background-image:url("./images/cover.png");
+}
+
+section .images .img08{
+  background-image:url("./images/cover.png");
+  margin-bottom:5%;
+}
+
+section .images .img09{
+  background-image:url("./images/cover.png");
 }
 
 section .items{
-  width:55%;
+  width:50%;
 }
 
 section .items ul{
   list-style-type:none;
   margin:0;
+}
+
+section .items ul li{
+  font-size:10pt;
 }
 
 section .items ul li:not(:first-child){
@@ -131,9 +206,7 @@ section .items ul li:not(:first-child){
 
 section .items ul li i{
   display:block;
-  margin-top:2mm;
   width:80%;
-  font-size:10pt;
 }
 
 section .items ul li span{
@@ -142,7 +215,8 @@ section .items ul li span{
 }
 
 section .items ul li span:not(.price):after{
-  content:leader("_");
+  font-family: 'Montserrat', sans-serif;
+  content:leader(solid);
   color:var(--main-color);
 }
 
@@ -153,7 +227,7 @@ section .items ul li span.price{
 section.specialItems{
   border:.5mm solid var(--main-color);
   padding:6mm;
-  margin-top:6mm;
+  margin-top:1cm;
 }
 
 section.specialItems h1{
@@ -161,12 +235,19 @@ section.specialItems h1{
 }
 
 section.specialItems h1:before{
-  content:leader("_");
+  font-family: 'Montserrat', sans-serif;
+  content:leader(solid);
   color:var(--main-color);
 }
 
 .note h3{
   margin:12mm 0 0 0;
+  font-size:10pt;
+  font-weight:normal;
+  text-transform:uppercase;
+}
+
+.note i{
   font-size:10pt;
 }
 
