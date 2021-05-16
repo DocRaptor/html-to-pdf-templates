@@ -1,3 +1,8 @@
+<!-- 
+We start the HTML with the footer element, this will be seen on all pages except the first/cover page. 
+To make sure the running element is shown on all these pages and not only the first, we need to place
+it as first element in our HTML.
+-->
 <footer class="menuPagesFooter">
   <div>
     <b>Website</b> <a href="https://restaurantwebsite.com">restaurantwebsite.com</a>
@@ -21,11 +26,26 @@
     </span>
   </div>
 </footer>
+
+<!--
+The HEADER element functions as cover page, showing an image (via CSS) and the 
+Logo + Restaurant Name.
+-->
 <header class="coverPage">
   <h1>Logo &amp; Restaurant Name</h1>
 </header>
+
+<!--
+All following menu pages are within the MAIN element. Each section in the menu is 
+also having a own section here, we do so via the SECTION HTML tag.
+-->
 <main class="menuPages">
   <section>
+    <!--
+    Each section has an header and a content, the content contains
+    an DIV for the images of this section and a DIV with an list of
+    all menu items.
+    -->
     <h1>Section Header</h1>
     <div class="sectionContent">
       <div class="images img01">
@@ -136,6 +156,12 @@
       </div>
     </div>
   </section>
+  
+  <!--
+  The last section has the special items of the food menu. 
+  This section will be styled differently via CSS and therefore needs
+  an extra class.
+  -->
   <section class="specialItems">
     <h1> Specials Header</h1>
     <div class="sectionContent">
