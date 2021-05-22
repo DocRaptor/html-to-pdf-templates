@@ -82,6 +82,20 @@ aside{
   text-align:left;
 }
 
+aside span.img{
+  width:3cm;
+  height:3cm;
+  background-image:url("./images/dp.png");
+  background-repeat:no-repeat;
+  background-size:120%;
+  background-position:-15px -25px;
+  border:1.5mm solid var(--text-color);
+  border-radius:100%;
+  display:block;
+  position:absolute;
+  top:-1.5cm;
+}
+
 aside hr{
   margin:2cm 0 .5cm 0;
   border:0;
@@ -99,7 +113,7 @@ aside h4{
 
 aside a{
   display:block;
-  margin-top:6cm;
+  margin-top:4cm;
   font-weight:bold;
   text-transform:uppercase;
 }
