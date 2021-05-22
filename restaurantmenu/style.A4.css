@@ -218,7 +218,7 @@ For the first image we use the pizza image again and to keep some space to the n
 of 5%.
 */
 section .images .img02{
-  background-image:url("./images/pizza.png");
+  background-image:url("https://images.unsplash.com/photo-1619535860434-ba1d8fa12536?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1972&q=80");
   margin-bottom:5%;
 }
 
@@ -226,7 +226,7 @@ section .images .img02{
 For the second image in the second section we use the same image as on the cover page.
 */
 section .images .img03{
-  background-image:url("./images/cover.png");
+  background-image:url("https://images.unsplash.com/photo-1514944288352-fffac99f0bdf?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80");
 }
 
 /*
@@ -270,17 +270,23 @@ section .images .img07{
 /*
 The top two images of the third section will be the pizza image.
 */
-section .images .img04,
+section .images .img04{
+  background-image:url("https://images.unsplash.com/photo-1579631542720-3a87824fff86?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1900&q=80");
+}
+
 section .images .img05{
-  background-image:url("./images/pizza.png");
+  background-image:url("https://images.unsplash.com/photo-1522666257812-173fdc2d11fe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1536&q=80");
 }
 
 /*
 The last two images of the third section are the cover image.
 */
-section .images .img06,
+section .images .img06{
+  background-image:url("https://images.unsplash.com/photo-1529312266912-b33cfce2eefd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80");
+}
+
 section .images .img07{
-  background-image:url("./images/cover.png");
+  background-image:url("https://images.unsplash.com/photo-1608032076946-23d89c6d6d0b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80");
 }
 
 /*
@@ -288,7 +294,7 @@ In the special section we will show two images below each other, both the cover 
 gets a margin bottom of 5%.
 */
 section .images .img08{
-  background-image:url("./images/cover.png");
+  background-image:url("https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2003&q=80");
   margin-bottom:5%;
 }
 
@@ -296,7 +302,7 @@ section .images .img08{
 Here we set the second image of the special section.
 */
 section .images .img09{
-  background-image:url("./images/cover.png");
+  background-image:url("https://images.unsplash.com/photo-1562785620-d85f43a50f83?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80");
 }
 
 /*
