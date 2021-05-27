@@ -6,6 +6,7 @@
   --highlight-color-one-transparent: #1FC2DEB3;
   --highlight-color-two: green;
   --text-color: #303E48;
+  --table-row-separator-color:#CEC3BA;
 }
 
 @page{
@@ -51,8 +52,7 @@ a{
 header{
   position:running(header);
   height:2cm;
-  border-bottom:.5mm solid var(--text-color);
-  opacity:.5;
+  border-bottom:.5mm solid var(--table-row-separator-color);
 }
 
 
@@ -144,4 +144,30 @@ footer a:last-of-type{
   color:var(--highlight-color-one);
   font-weight:bold;
   line-height:2;
+}
+
+.chapter.budget table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:1.5cm;
+}
+
+.chapter.budget table:first-of-type{
+  margin-top:1cm;
+}
+
+.chapter.budget table thead tr th{
+  background-color:var(--highlight-color-one);
+  text-align:left;
+  padding:4mm 6mm;
+  text-transform:uppercase;
+}
+
+.chapter.budget table tbody tr td:first-of-type{
+  width:90%;
+}
+
+.chapter.budget table tbody tr td{
+  padding:6mm;
+  border-bottom:0.125mm solid var(--table-row-separator-color);
 }
