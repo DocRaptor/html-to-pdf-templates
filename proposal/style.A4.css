@@ -3,6 +3,7 @@
 
 :root{
   --highlight-color-one: #1FC2DE;
+  --highlight-color-one-transparent: #1FC2DEB3;
   --highlight-color-two: green;
   --text-color: #303E48;
 }
@@ -74,6 +75,60 @@ footer hr{
 
 footer a:last-of-type{
   font-weight:bold;
+}
+
+.coverPage{
+  position:relative;
+  width:50%;
+  height:237mm;
+  margin:1.5cm;
+  padding:1.5cm;
+  color:white;
+  text-transform:uppercase;
+  background-color:var(--highlight-color-one-transparent);
+}
+
+.coverPage .logo{
+  position:relative;
+  width:4cm;
+  height:4cm;
+  border-radius:100%;
+  background-color:white;
+  color:var(--text-color);
+  text-align:center;
+  font-weight:bold;
+}
+
+.coverPage .logo span{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translateY(-50%) translateX(-50%);
+  display:inline-block;
+  width:3cm;
+}
+
+.coverPage h1{
+  margin-top:3cm;
+  margin-bottom:1cm;
+  padding-bottom:.25cm;
+  border-bottom:0.5mm solid white;
+  font-size:28pt;
+}
+
+.coverPage h2{
+  font-weight:normal;
+}
+
+.coverPage h2,
+.coverPage h3{
+  margin:0;
+  font-size:12pt;
+}
+
+.coverPage .address{
+  position:absolute;
+  bottom:1.5cm;
 }
 
 .chapter{
