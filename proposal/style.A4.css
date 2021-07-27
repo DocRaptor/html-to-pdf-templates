@@ -230,6 +230,16 @@ hr.scope{
   width:55%;
 }
 
+img.conclusion{
+  width:100%;
+}
+
+div.conclusion{
+  margin-top:10mm;
+  column-gap:10mm;
+  column-count:3;
+}
+
 .chapter{
   page-break-before:always;
 }
@@ -243,6 +253,10 @@ hr.scope{
   color:var(--highlight-color-one);
   font-weight:bold;
   line-height:2;
+}
+
+.chapter .highlight.light{
+  font-weight:normal;
 }
 
 .chapter.budget table{
