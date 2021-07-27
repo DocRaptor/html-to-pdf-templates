@@ -55,28 +55,6 @@ header{
   border-bottom:.5mm solid var(--table-row-separator-color);
 }
 
-
-footer{
-  position:running(footer);
-  font-size:8pt;
-  text-transform:uppercase;
-  color:var(--highlight-color-one);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-footer hr{
-  width:45%;
-  height:0;
-  border:0;
-  border-top:.5mm solid var(--highlight-color-one);
-}
-
-footer a:last-of-type{
-  font-weight:bold;
-}
-
 .coverPage{
   position:relative;
   width:50%;
@@ -217,6 +195,41 @@ footer a:last-of-type{
   margin-bottom:0;
 }
 
+hr.scope{
+  height:0;
+  border:0;
+  border-top:.25mm solid var(--table-row-separator-color);
+  margin:10mm 0 10mm 0;
+}
+
+.scope-section{
+  display:flex;
+  justify-content:space-between;
+}
+
+.scope-section .main{
+  width:40%;
+  color:white;
+}
+
+.scope-section .main h2{
+  background-color:var(--highlight-color-one-transparent);
+  padding:2.5mm 5mm 2.5mm 5mm;
+  text-transform:uppercase;
+  font-size:10pt;
+  margin-bottom:0;
+}
+
+.scope-section .main p{
+  background-color:var(--highlight-color-one);
+  padding:5mm;
+  margin-top:2.5mm;
+}
+
+.scope-section .description{
+  width:55%;
+}
+
 .chapter{
   page-break-before:always;
 }
@@ -256,4 +269,25 @@ footer a:last-of-type{
 .chapter.budget table tbody tr td{
   padding:6mm;
   border-bottom:0.125mm solid var(--table-row-separator-color);
+}
+
+footer{
+  position:running(footer);
+  font-size:8pt;
+  text-transform:uppercase;
+  color:var(--highlight-color-one);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+footer hr{
+  width:45%;
+  height:0;
+  border:0;
+  border-top:.5mm solid var(--highlight-color-one);
+}
+
+footer a:last-of-type{
+  font-weight:bold;
 }
