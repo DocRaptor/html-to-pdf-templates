@@ -240,6 +240,33 @@ div.conclusion{
   column-count:3;
 }
 
+.next{
+  margin-bottom:20mm;
+}
+
+.next h2,
+.next p{
+  margin:0;
+}
+
+.next div{
+  display:flex;
+  justify-content:space-between;
+}
+
+.next h3{
+  width:30%;
+  text-transform:uppercase;
+  border-top:1mm solid var(--highlight-color-one);
+  padding-top:5mm;
+  margin:0;
+  font-size:10pt;
+}
+
+.next p{
+  width:60%;
+}
+
 .chapter{
   page-break-before:always;
 }
