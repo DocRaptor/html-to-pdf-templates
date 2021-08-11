@@ -1,6 +1,11 @@
+/* 
+Import the desired font from Google fonts. 
+*/
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 
-
+/* 
+Define all colors used in this template 
+*/
 :root{
   --highlight-color-one: #1FC2DE;
   --highlight-color-one-transparent: #1FC2DEB3;
@@ -10,6 +15,15 @@
 }
 
 @page{
+  /*
+  This CSS highlights how page sizes and margin boxes are set.
+  https://docraptor.com/documentation/article/1067959-size-dimensions-orientation
+
+  Within the page margin boxes content from running elements is used instead of a 
+  standard content string. The name which is passed in the element() function can
+  be found in the CSS code below in a position property and is defined there by 
+  the running() function.
+  */
   size:A4;
   
   @top-left{
@@ -22,6 +36,13 @@
 }
 
 @page:first{
+  /*
+  This CSS highlights how the margin, background and page margin boxes are set 
+  only for the first page of the PDF.
+  
+  As the first or cover page should not get the header and footer like all other
+  pages, we set the content of these page margin boxes to empty.
+  */
   margin:0;
   background-image:url("https://printcss.live/cover.png");
   background-size:cover;
@@ -35,6 +56,13 @@
   }
 }
 
+/* 
+The body itself has no margin or padding.
+Additionally the default font family, size and color for the document is defined
+here.
+
+For the entries in the timeline we also reset the CSS counter called "entries".
+*/
 body{
   margin:0;
   padding:0;
@@ -45,18 +73,40 @@ body{
   counter-reset:entries;
 }
 
+/*
+The links in the document should not be highlighted by an different color and underline
+instead we use the color value inherit to get the current texts color.
+*/
 a{
   color:inherit;
   text-decoration:none;
 }
 
+/*
+The page header in our document uses the HTML HEADER element, we define a height 
+of 2cm and a border on the bottom of half a millimeter.
 
+As mentioned above in the comment for the @page the position property with the 
+value running(header) makes this HTML element float into the top left page margin
+box. This page margin box repeats on every page in case we would have a multi-page
+proposal.
+*/
 header{
   position:running(header);
   height:2cm;
   border-bottom:.5mm solid var(--table-row-separator-color);
 }
 
+/*
+The cover page DIV element gets a width of 50% of the page and a fixed height of
+237mm with an margin and padding of 1.5cm. The text color we will set to white and
+all text on the cover page should be displayed in uppercase no matter how its written
+in the HTML code. 
+
+Lastly the background color is set to a slightly transparent blue so 
+the background image which we set in the @page:first rule is still visible behind the 
+text.
+*/
 .coverPage{
   position:relative;
   width:50%;
@@ -68,6 +118,11 @@ header{
   background-color:var(--highlight-color-one-transparent);
 }
 
+/*
+The logo on the cover page is a 4x4cm element with a border radius of 100% to make a circle.
+As we set the background color of the logo circle to white we also need to change the text
+color to our default color defined in the :root above.
+*/
 .coverPage .logo{
   position:relative;
   width:4cm;
@@ -79,6 +134,13 @@ header{
   font-weight:bold;
 }
 
+/*
+To center the text in the logo we position the element absolute and move it 50% to the 
+right and bottom. After that we need to move it back by 50% of the elements size with the
+transform property.
+
+To ensure the line breaks are like we want it in the logo text we also set a fixed width.
+*/
 .coverPage .logo span{
   position:absolute;
   top:50%;
@@ -88,6 +150,9 @@ header{
   width:3cm;
 }
 
+/*
+3cm below the logo we show the title of the document, with a white border below as underline.
+*/
 .coverPage h1{
   margin-top:3cm;
   margin-bottom:1cm;
@@ -96,21 +161,38 @@ header{
   font-size:28pt;
 }
 
+/*
+To see for whom the proposal is prepared for we have this "Prepared for" line below the heading
+but this should not be bold so we overwrite the default font-weight of the H2 element with "normal".
+*/
 .coverPage h2{
   font-weight:normal;
 }
 
+/*
+The clients name and the date of the proposal are within H3 HTML elements, as in the PDF these and the
+H2 element should have the same size we set a common font size for them.
+*/
 .coverPage h2,
 .coverPage h3{
   margin:0;
   font-size:12pt;
 }
 
+/*
+On the bottom of the cover page element we see the address of the company, we simply position
+this with absolute and leave 1.5cm to the bottom of our parent element.
+*/
 .coverPage .address{
   position:absolute;
   bottom:1.5cm;
 }
 
+/*
+On the timeline chapter page there is a separator between the two timeline rows. This is done
+with a HR HTML element and the below CSS where we just use a border top of 0.25mm in the main
+highlight color.
+*/
 hr.timelinedivider{
   height:0;
   border:0;
@@ -118,6 +200,9 @@ hr.timelinedivider{
   margin:10mm 0 10mm 0;
 }
 
+/*
+The timeline entries are wrapped in a div where we make use of flexbox.
+*/
 .timeline{
   display:flex;
   flex-wrap: wrap;
@@ -125,12 +210,21 @@ hr.timelinedivider{
   margin-top:15mm;
 }
 
+/*
+Each timeline entry gets a width of 30% of the page and increases the counter "entries"
+by 1. This is the CSS counter which is reset in the body element of this CSS file.
+*/
 .timeline .entry{
   width:30%;
   position:relative;
   counter-increment:entries;
 }
 
+/*
+The element with the icon class is used to display the number of the timeline entry and
+the arrow pointing to the next entry. The number is done in the :before pseudo element, where
+we draw a 12x12mm circle and center the number in bold and black.
+*/
 .icon:before{
   position:relative;
   z-index:1;
@@ -148,6 +242,12 @@ hr.timelinedivider{
   font-size:20pt;
 }
 
+/*
+The icon element itself is positioned above the timeline entries headline with a margin left
+of 16mm and a with of 100% (= the 30% of the entry element) minus the 16mm from the margin.
+
+As the number circle has a height of 12mm, the icon element itself does too.
+*/
 .icon{
   position:relative;
   margin-left:16mm;
@@ -155,6 +255,12 @@ hr.timelinedivider{
   height: 12mm;
 }
 
+/*
+The arrow is drawn with CSS and to do that first we position the main element absolute
+move it 5mm from the top, change the width to 90% and give it a fixed height of 1.25mm.
+
+The color of the arrow will be our highlight-color-one so we set it as background color.
+*/
 .arrow {
   position: absolute;
   top: 5mm;
@@ -163,6 +269,10 @@ hr.timelinedivider{
   background-color:var(--highlight-color-one);
 }
 
+/*
+The sides of the arrow are done with the :before and :after pseudo elements which get 
+positioned from the right and also get the highlight background color.
+*/
 .arrow::after, .arrow::before {
   content: '';
   position: absolute;
@@ -172,18 +282,28 @@ hr.timelinedivider{
   background-color:var(--highlight-color-one);
 }
 
+/*
+To make it look like an arrow the lines drawn in the pseudo elements need to be
+rotated by 45deg and -45deg for the other side. The positioning of top 1.25mm or
+-1.25mm is exactly the same as the height of the arrow elements.
+*/
 .arrow::after {
   top: -1.25mm;
   transform: rotate(45deg);
 }
 
+/*
+See comment above for .arrow::after
+*/
 .arrow::before {
   top: 1.25mm;
   transform: rotate(-45deg);
 }
 
-
-
+/*
+The timeline headers (title and date) get the same font size and no matter how
+the text is written in the HTML, it should always appear uppercase.
+*/
 .timeline h2,
 .timeline h3{
   font-size:10pt;
@@ -191,48 +311,98 @@ hr.timelinedivider{
   text-transform:uppercase;
 }
 
+/*
+To get some distance to the numbering and arrows the H2 element gets a margin
+top of 10mm.
+*/
 .timeline h2{
   margin-top:10mm;
 }
 
+/*
+The date which we put in an H3 element should have a normal font weight so
+we overwrite the default "bold".
+*/
 .timeline h3{
   font-weight:normal;
 }
 
+/*
+For the objectives page we use two columns and to do so we use the flexbox
+and to keep space between our columns we use the justify-content property.
+*/
 .twocolumn{
   display:flex;
   justify-content:space-between;
 }
 
+/*
+Each of the columns gets 46% of the page width so we get enough (8%) space 
+between the columns.
+*/
 .twocolumn > div{
   width:46%;
 }
 
+/*
+In the columns we have some descriptions with headings, the first of these
+header should not have a margin top so it starts at the same height as the left 
+side blue box.
+*/
 .twocolumn div h4:first-of-type{
   margin-top:0;
 }
 
+/*
+In general the headings we have a font size of 10pt, the text is 
+displayed uppercase and there is no margin to the bottom.
+*/
 .twocolumn h4{
   margin-bottom:0;
   text-transform:uppercase;
   font-size:10pt;
 }
 
+/*
+To have no space between headers and the text paragraphs we give the P elements
+a margin top of 0 also.
+*/
 .twocolumn p{
   margin-top:0;
 }
 
+/*
+On the left column (or blue column) we change the text color to white and set the
+background color to our highlight color one.
+*/
 .blue{
   color:white;
   background-color:var(--highlight-color-one);
 }
 
+/*
+The three list points on the left side are build with the OL HTML element, but we 
+want to style the numbers of the list points ourselfs so we remove the default
+list-style-type. 
+
+As we use a own CSS counter we first need to reset it for this chapter we call the
+counter "objectives".
+*/
 .blue ol{
   list-style-type:none;
   margin:10mm 5mm 10mm 5mm;
   counter-reset:objectives;
 }
 
+
+/*
+In the pseudo element :before of each single list element we increase the counter 
+and also display it in a 10x10mm circle with an white border.
+
+The list element itself is responsible to show the white left border below the number,
+but we want some space between the number circle and the border. For this we use the
+box shadow of 4mm with the same blue color as the column itself.
+*/
 .blue ol li:before{
   counter-increment:objectives;
   content: counter(objectives);
@@ -248,14 +418,21 @@ hr.timelinedivider{
   background-color:var(--highlight-color-one);
   font-weight:bold;
   font-size:20pt;
-  
   box-shadow: 0 0 0 4mm var(--highlight-color-one);
 }
 
+/*
+The first list element gets the margin top set to 0 so we start at the top of the 
+blue column.
+*/
 .blue ol li:first-of-type{
   margin-top:0;
 }
 
+/*
+All other list elements get a margin of 10mm to make some space between them.
+The white border is shown in the center below the circle with the list point number.
+*/
 .blue ol li{
   margin-top:10mm;
   margin-left:6.5mm;
@@ -264,12 +441,18 @@ hr.timelinedivider{
   position:relative;
 }
 
-
+/*
+The header element H4 in the single list entries get moved up by 1mm to align 
+them better with the number circle.
+*/
 .blue ol li h4{
   position:absolute;
   top:1mm;
 }
 
+/*
+Both the heading and the text are moved to the right side with the float property.
+*/
 .blue ol li h4,
 .blue ol li p{
   margin-left:2.5mm;
@@ -279,12 +462,21 @@ hr.timelinedivider{
   float:right;
 }
 
+/*
+The paragraphs get moved up a little to be directly under the H4 heading. Also the
+width is adjusted to give enough white space on the right side.
+*/
 .blue ol li p{
   width:calc(100% - 8.5mm);
   margin-top:-6.5mm;
   margin-bottom:0;
 }
 
+/*
+On the scope/plan page each scope section is separated by a thin line, which we do
+with the HR HTML element, as you see below we give a border of 0.25mm and put a 
+margin top and bottom of 10mm.
+*/
 hr.scope{
   height:0;
   border:0;
@@ -292,16 +484,27 @@ hr.scope{
   margin:10mm 0 10mm 0;
 }
 
+/*
+Each scope section has two columns, which we do via the flexbox.
+*/
 .scope-section{
   display:flex;
   justify-content:space-between;
 }
 
+/*
+The left side gets a width of 40% and as both elements in the left side have
+a blue background we set the text color to white.
+*/
 .scope-section .main{
   width:40%;
   color:white;
 }
 
+/*
+The heading in the left column gets the blue background and some padding for
+the text, additionally we show the text in uppercase 10pt.
+*/
 .scope-section .main h2{
   background-color:var(--highlight-color-one-transparent);
   padding:2.5mm 5mm 2.5mm 5mm;
@@ -310,40 +513,72 @@ hr.scope{
   margin-bottom:0;
 }
 
+/*
+The teaser below the heading also gets the blue background and a padding.
+With the margin top we create some space between the two blue elements.
+*/
 .scope-section .main p{
   background-color:var(--highlight-color-one);
   padding:5mm;
   margin-top:2.5mm;
 }
 
+/*
+The right column gets a width of 55%, so we have 5% of the pages width between
+the two columns.
+*/
 .scope-section .description{
   width:55%;
 }
 
+/*
+The image on the conclusion page gets a width of 100% so it always takes the full
+page width (minus the page margin).
+*/
 img.conclusion{
   width:100%;
 }
 
+/*
+Below the image there is a text which we show in 3 columns with a gap between them of
+10mm, additionally we keep 10mm margin top to have some space between image and text.
+*/
 div.conclusion{
   margin-top:10mm;
   column-gap:10mm;
   column-count:3;
 }
 
+/*
+On the page with the next steps each of the 4 steps is in an own element where we
+put a 20mm margin bottom to keep space between each of the 4 steps.
+*/
 .next{
   margin-bottom:20mm;
 }
 
+/*
+The heading and text of the step do not need any margin as we directly want them to
+start on the top.
+*/
 .next h2,
 .next p{
   margin:0;
 }
 
+/*
+The headline and text of each steps are two columns for which we use flexbox again.
+*/
 .next div{
   display:flex;
   justify-content:space-between;
 }
 
+/*
+The heading gets a 30% width and as most headings in this document the text will be
+displayed uppercase. Additionally the heading gets a blue border on top and 5mm padding
+between border and text.
+*/
 .next h3{
   width:30%;
   text-transform:uppercase;
@@ -353,39 +588,69 @@ div.conclusion{
   font-size:10pt;
 }
 
+/*
+The text of a step gets the width 60%, this way we have 10% between the heading on the left
+and the text on the right side.
+*/
 .next p{
   width:60%;
 }
 
+/*
+Each chapter should start on a new page, for this we need to set the page-break-before property
+to always.
+*/
 .chapter{
   page-break-before:always;
 }
 
+/*
+The chapter headings should have a margin top of 1cm and the text should always be displayed uppercase.
+*/
 .chapter h1{
   margin-top:1cm;
   text-transform:uppercase;
 }
 
+/*
+The first paragraph on the chapter pages is highlighted in blue, for that we set the color accordingly
+and also make the font bold.
+*/
 .chapter .highlight{
   color:var(--highlight-color-one);
   font-weight:bold;
   line-height:2;
 }
 
+/*
+Some pages have a second highlighted paragraph which should be also blue but appear in a normal font 
+weight.
+*/
 .chapter .highlight.light{
   font-weight:normal;
 }
 
+/*
+The table on the budget page should always be 100% wide and the borders should be 
+collapsed. To give some space between the tables we add a margin top of 1.5cm.
+*/
 .chapter.budget table{
   width:100%;
   border-collapse:collapse;
   margin-top:1.5cm;
 }
 
+/*
+The first table should have a little less margin between table and highlighted paragraph.
+*/
 .chapter.budget table:first-of-type{
   margin-top:1cm;
 }
 
+/*
+The headers of the budget table get a blue background color and the text is transformed
+to uppercase.
+*/
 .chapter.budget table thead tr th{
   background-color:var(--highlight-color-one);
   text-align:left;
@@ -393,15 +658,28 @@ div.conclusion{
   text-transform:uppercase;
 }
 
+/*
+The first cell in each content row should consum 90% of the tables width.
+*/
 .chapter.budget table tbody tr td:first-of-type{
   width:90%;
 }
 
+/*
+All cells in the tables body have a padding of 6mm and a border on the bottom.
+*/
 .chapter.budget table tbody tr td{
   padding:6mm;
   border-bottom:0.125mm solid var(--table-row-separator-color);
 }
 
+/*
+The footer for all content pages is set as running element which gets added to
+the page margin boxes via the @page rule. 
+
+The text is smaller than standard and the items in the footer (HR element and text)
+are aligned.
+*/
 footer{
   position:running(footer);
   font-size:8pt;
@@ -412,6 +690,9 @@ footer{
   align-items:center;
 }
 
+/*
+The HR HTML element in the footer should have a width of 45% and a 0.5mm solid blue line.
+*/
 footer hr{
   width:45%;
   height:0;
@@ -419,6 +700,9 @@ footer hr{
   border-top:.5mm solid var(--highlight-color-one);
 }
 
+/*
+The last link in the footer (the link to the website) needs to be bold.
+*/
 footer a:last-of-type{
   font-weight:bold;
 }
