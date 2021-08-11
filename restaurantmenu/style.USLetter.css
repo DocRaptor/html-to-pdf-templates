@@ -377,7 +377,7 @@ section a border.
 section.specialItems{
   border:.5mm solid var(--main-color);
   padding:6mm;
-  margin-top:1cm;
+  margin-top:0;
 }
 
 /*
