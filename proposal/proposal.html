@@ -1,8 +1,11 @@
+<!-- The empty header element is used for the border on top of all pages, except the cover page. -->
 <header></header>
+<!-- All pages after the cover page get a footer with an phone number, email and website address. -->
 <footer>
   <hr />
   <span>317.234.8765 | <a href="mailto:email@company.com">email@company.com</a> | <a href="https://companywebsite.com">companywebsite.com</a></span>
 </footer>
+<!-- The cover page is wrapped into a div with the class coverPage to ensure a page break after the cover content. The cover contains the logo, title, subtitles and date of the proposal. -->
 <div class="coverPage">
   <div class="logo">
     <span>Logo & Company Name</span>
@@ -21,9 +24,12 @@
     317.213.2345
   </div>
 </div>
+<!-- Each of the following chapters like Objectives and Scope/Plan is wrapped in an div to ensure each chapter starts on a new page. -->
 <div class="chapter">
   <h1>Objectives</h1>
+  <!-- Most of the chapters have a blue highlight text which is done with the paragraph element and highlight class. -->
   <p class="highlight">Aenean convallis lorem diam, ut imperdiet lectus ornare eget. Vestibulum consequat aliquam felis, sed porttitor sapien porta et.</p>
+  <!-- The Objectives chapter is a page with 2 columns, the first with a blue background and a list of 3 points. -->
   <div class="twocolumn">
     <div class="blue">
       <ol>
@@ -41,6 +47,7 @@
         </li>
       </ol>
     </div>
+    <!-- The second column can contain a few more paragraphs with headings. -->
     <div>
       <h4>Pellentesque Cursus</h4>
       <p>Commodo iaculis. Aliquam erat volutpat. Donec vel ultricies quam, ac laoreet purus. Fusce faucibus imperdiet ultrices. Fusce dictum lacus augue, at volutpat ante ultricies quis. Nam vitae justo non ligula sodales tempus.</p>
@@ -54,19 +61,26 @@
     </div>
   </div>
 </div>
+<!-- The Scope/Plan page contains 3 sections with 2 columns. On the left side of each section we have the sections heading and a small teaser, both with a blue background. On the right side the detailed text description. -->
 <div class="chapter">
   <h1>Scope/Plan</h1>
   <p class="highlight">Vestibulum consequat aliquam felis, sed porttitor sapien porta et. Mauris vitae condimentum ipsum, sit amet euismod elit. Ut quis egestas libero. Duis vitae lacus dui.</p>
+  <!-- Section wrapper div -->
   <div class="scope-section">
+    <!-- Left column -->
     <div class="main">
+      <!-- Section header -->
       <h2>01 | Lorem Ipsum</h2>
+      <!-- Section teaser -->
       <p>Commodo iaculis. Aliquam erat volutpat. Donec vel ultricies quam, ac laoreet purus.</p>
     </div>
+    <!-- Right column with the detailed description -->
     <div class="description">
       <p>Quisque ligula orci, ultrices nec dignissim id, pretium eu justo. Aliquam dignissim justo ante, nec accumsan lectus lobortis eleifend. Aenean convallis lorem diam, ut imperdiet lectus ornare eget. Vestibulum consequat aliquam felis, sed porttitor sapien porta et. Mauris vitae ipsum, sit amet euismod elit.</p>
       <p>Fusce faucibus imperdiet ultrices. Fusce dictum lacus augue, at volutpat ante ultricies quis. Nam vitae justo non ligula sodales tempus.</p>
     </div>
   </div>
+  <!-- An hr element as separator of the scope sections. -->
   <hr class="scope" />
   <div class="scope-section">
     <div class="main">
@@ -90,16 +104,23 @@
     </div>
   </div>
 </div>
+<!-- The timeline chapter contains a timeline with 6 numbered elements where the first 5 have an arrow pointing to the next timeline entry. -->
 <div class="chapter">
   <h1>Timeline</h1>
   <p class="highlight">Donec vel ultricies quam, ac laoreet purus. Fusce faucibus imperdiet ultrices. Fusce dictum lacus augue, at volutpat ante ultricies quis. Nam vitae justo non ligula sodales tempus. Commodo iaculis. Aliquam erat volutpat. Donec vel ultricies quam, ac laoreet purus.</p>
+  <!-- The wrapper element for the timeline -->
   <div class="timeline">
+    <!-- One timeline entry -->
     <div class="entry">
+      <!-- The icon is used to number the entries (via CSS counters) and to display the arrow to the next timeline entry. -->
       <div class="icon">
         <div class="arrow"></div>
       </div>
+      <!-- Headline of the entry -->
       <h2>Lorem Ipsum Dolor</h2>
+      <!-- Subheader, in this example used for the date of the entry -->
       <h3>Date Goes Here</h3>
+      <!-- Description of the timeline entry -->
       <p>Aliquam erat volutpat. Donec vel ultricies quam, ac laoreet purus. Fusce faucibus imperdiet ultrices. Fusce dictum lacus augue, at volutpat ante ultricies quis. Nam vitae justo non ligula sodales tempus.</p>
     </div>
     <div class="entry">
@@ -139,6 +160,7 @@
     </div>
     <div class="entry">
       <div class="icon">
+        <!-- The last timeline entry gets no element for the arrow as it does not need to point to a further entry. -->
       </div>
       <h2>Lorem Ipsum Dolor</h2>
       <h3>Date Goes Here</h3>
@@ -146,6 +168,7 @@
     </div>
   </div>
 </div>
+<!-- The budget chapter simply shows you three tables with the budget in dollar for the 3 different phases of the project. -->
 <div class="chapter budget">
   <h1>Budget</h1>
   <table>
@@ -218,6 +241,10 @@
     </tbody>
   </table>
 </div>
+<!-- 
+  The conclusion chapter is showing you not only the standard highlight text after the header but also a second blue but not bold text for further descriptions. 
+  After that an image and a 3 column text is displayed.
+-->
 <div class="chapter">
   <h1>Conclusion</h1>
   <p class="highlight">Vestibulum consequat aliquam felis, sed porttitor sapien porta et. Mauris vitae condimentum ipsum, sit amet euismod elit. Ut quis egestas libero. Duis vitae lacus dui.</p>
@@ -232,6 +259,7 @@
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu vulputate varius. Quisque ligula orci, ultrices nec dignissim id, pretium eu justo. Nullam lacus turpis, iaculis quis mattis at, consequat vel sapien.</p>
   </div>
 </div>
+<!-- The last chapter is for the next steps in the proposal and simply shows a list of 4 steps with the title on the left and description on the right side. -->
 <div class="chapter">
   <h1>Next Steps</h1>
   <p class="highlight">Donec vel ultricies quam, ac laoreet purus. Fusce faucibus imperdiet ultrices. Fusce dictum lacus augue, at volutpat ante ultricies quis. Nam vitae justo non ligula sodales tempus. Commodo iaculis. Aliquam erat volutpat. Donec vel ultricies quam, ac laoreet purus.</p>
