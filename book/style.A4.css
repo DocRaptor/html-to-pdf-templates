@@ -82,7 +82,7 @@ hr{
   height:0;
   border:0;
   border-top:.75mm solid var(--highlight-color-one);
-  margin:1.5cm 0 1.5cm 0;
+  margin:1cm 0 1cm 0;
 }
 
 /*
@@ -107,14 +107,19 @@ header{
 
 .pageBreak{
   page-break-before:always;
-  height:1.5cm;
+  height:1cm;
 }
 
 .chapterPage h1,
 .tocPage h1,
 .bibliographyPage h1{
-  margin-top:1.5cm;
+  margin-top:1cm;
   text-transform:uppercase;
+}
+
+.imageContainer{
+  max-height:9cm;
+  overflow:hidden;
 }
 
 img{
@@ -151,7 +156,11 @@ dl,
 .highlight{
   color:var(--highlight-color-one);
   font-weight:bold;
-  font-size:16pt;
+  font-size:14pt;
+}
+
+.imageContainer + .highlight{
+  margin-top:1cm;
 }
 
 h4{
