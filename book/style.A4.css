@@ -1,0 +1,30 @@
+.coverPage,
+.tocPage,
+.chapterPage,
+.pageBreak{
+  page-break-after:always;
+}
+
+img{
+  max-width:100%;
+}
+
+.twoColumns,
+.threeColumns{
+  display:flex;
+  justify-content:space-between;
+  margin:1cm 0 1cm 0;
+}
+
+.twoColumns > *{
+  width:48.5%;
+}
+
+.threeColumns > *{
+  width:30%;
+}
+
+.twoTextColumns{
+  column-count:2;
+  column-gap:1cm;
+}
