@@ -44,7 +44,7 @@ Define all colors used in this template
   pages, we set the content of these page margin boxes to empty.
   */
   margin:0;
-  background-image:url("https://printcss.live/cover.png");
+  background-image:url("./images/cover.png");
   background-size:cover;
   
   @top-left{
