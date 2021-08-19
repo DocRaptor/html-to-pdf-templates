@@ -1,12 +1,124 @@
+/* 
+Import the desired font from Google fonts. 
+*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+/* 
+Define all colors used in this template 
+*/
+:root{
+  --highlight-color-one: #1FC2DE;
+  --highlight-color-one-transparent: #1FC2DEB3;
+  --text-color: #303E48;
+  --table-row-separator-color:#CEC3BA;
+}
+
+@page{
+  /*
+  This CSS highlights how page sizes and margin boxes are set.
+  https://docraptor.com/documentation/article/1067959-size-dimensions-orientation
+  Within the page margin boxes content from running elements is used instead of a 
+  standard content string. The name which is passed in the element() function can
+  be found in the CSS code below in a position property and is defined there by 
+  the running() function.
+  */
+  size:A4;
+  
+  @top-left{
+  	content:element(header);
+  }
+  
+  @bottom-left{
+  	content:element(footer);
+  }
+}
+
+@page:first{
+  /*
+  This CSS highlights how the margin, background and page margin boxes are set 
+  only for the first page of the PDF.
+  
+  As the first or cover page should not get the header and footer like all other
+  pages, we set the content of these page margin boxes to empty.
+  */
+  margin:0;
+  background-size:cover;
+  
+  @top-left{
+    content:"";
+  }
+  
+  @bottom-left{
+    content:"";
+  }
+}
+
+/* 
+The body itself has no margin or padding.
+Additionally the default font family, size and color for the document is defined
+here.
+*/
+body{
+  margin:0;
+  padding:0;
+  color:var(--text-color);
+  font-family: 'Montserrat', sans-serif;
+  font-size:10pt;
+}
+
+/*
+The links in the document should not be highlighted by an different color and underline
+instead we use the color value inherit to get the current texts color.
+*/
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+/*
+Any HR HTML element should get the highlight color.
+*/
+hr{
+  height:0;
+  border:0;
+  border-top:.75mm solid var(--highlight-color-one);
+  margin:1.5cm 0 1.5cm 0;
+}
+
+/*
+The page header in our document uses the HTML HEADER element, we define a height 
+of 2cm and a border on the bottom of half a millimeter.
+As mentioned above in the comment for the @page the position property with the 
+value running(header) makes this HTML element float into the top left page margin
+box. This page margin box repeats on every page in case we would have a multi-page
+proposal.
+*/
+header{
+  position:running(header);
+  height:2cm;
+  border-bottom:.5mm solid var(--table-row-separator-color);
+}
+
 .coverPage,
 .tocPage,
-.chapterPage,
-.pageBreak{
+.chapterPage{
   page-break-after:always;
 }
 
+.pageBreak{
+  page-break-before:always;
+  height:1.5cm;
+}
+
+.chapterPage h1,
+.tocPage h1,
+.bibliographyPage h1{
+  margin-top:1.5cm;
+  text-transform:uppercase;
+}
+
 img{
-  max-width:100%;
+  width:100%;
 }
 
 .twoColumns,
@@ -17,7 +129,7 @@ img{
 }
 
 .twoColumns > *{
-  width:48.5%;
+  width:48%;
 }
 
 .threeColumns > *{
@@ -25,6 +137,35 @@ img{
 }
 
 .twoTextColumns{
+  margin:1cm 0 1cm 0;
   column-count:2;
   column-gap:1cm;
+}
+
+dl,
+.highlight,
+.highlightLight{
+  color:var(--highlight-color-one);
+}
+
+.highlight{
+  color:var(--highlight-color-one);
+  font-weight:bold;
+  font-size:16pt;
+}
+
+h4{
+  margin:0;
+}
+
+p{
+  margin-top:0;
+}
+
+dt{
+  font-size:16pt;
+}
+
+dd{
+  margin:0 0 .5cm 0;
 }
