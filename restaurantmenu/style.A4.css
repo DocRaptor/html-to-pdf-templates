@@ -1,0 +1,450 @@
+/*
+Import the desired font from Google fonts.
+*/
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:wght@400;700&display=swap');
+
+/*
+Define all colors used in this template
+*/
+:root{
+  --main-color: #CEC3BA;
+  --text-color: #303E48;
+  --circle-color: rgba(255, 255, 255, .8);
+}
+
+@page{
+  /*
+  This CSS highlights how page sizes, margins, and margin boxes are set.
+  https://docraptor.com/documentation/article/1067959-size-dimensions-orientation
+
+  Within the page margin boxes content from running elements is used instead of a
+  standard content string. The name which is passed in the element() function can
+  be found in the CSS code below in a position property and is defined there by
+  the running() function.
+  */
+  size:A4;
+  margin:1.5cm 1.5cm 2cm 1.5cm;
+
+  @bottom-left{
+    content:element(footer);
+    background-color:var(--main-color);
+  }
+
+  @bottom-right-corner{
+    content:"";
+    background-color:var(--main-color);
+  }
+
+  @bottom-left-corner{
+    content:"";
+    background-color:var(--main-color);
+  }
+}
+
+@page:first{
+  /*
+  The first page gets a different style via the :first selector, as we want a full page
+  cover image we set the margin to 0 and add the image with a background-size "cover".
+
+  Also on the first page we do not want the footer with the restaurants address, which
+  appears on all other pages, therefore we set the content to "" in the bottom left
+  page margin box.
+  */
+  margin:0;
+  background-image:url("https://images.unsplash.com/photo-1546069901-d5bfd2cbfb1f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2600&q=80");
+  background-size:cover;
+
+  @bottom-left{
+    content:"";
+  }
+}
+
+/*
+In the body we set the default text color and font family, the font got imported above
+from google fonts.
+*/
+body{
+  color:var(--text-color);
+  font-family: 'Montserrat', sans-serif;
+}
+
+/*
+Also our heading elements and <i> tag get their default font.
+*/
+h1,
+h2,
+i{
+  font-family: 'Crimson Pro', serif;
+}
+
+/*
+The links in the document should not be highlighted by an different color and underline
+instead we use the color value inherit to get the current texts color.
+*/
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+/*
+Around the headers H1 element we want to show a circle, this is done by applying border-radius 100%.
+Also the element needs to be centered on the page, for this we use position absolute and the transform
+property.
+*/
+header{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translateX(-50%) translateY(-50%);
+  background-color:var(--circle-color);
+  border-radius:100%;
+  display:inline-block;
+  width:12cm;
+  height:12cm;
+}
+
+/*
+Around the circle itself there is another circle which has no background color but just a border.
+We again position this element and use the border-radius property. This time we just do not set a
+background color.
+*/
+header:after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translateX(-50%) translateY(-50%);
+  border:1mm solid var(--circle-color);
+  border-radius:100%;
+  display:inline-block;
+  width:13cm;
+  height:13cm;
+
+}
+
+/*
+The header on the cover page uses a different font family than all other H1 elements we have
+that's why we first overwrite the font. With the position and transform we move the element to the
+center of the circle.
+*/
+header h1{
+  font-family: 'Montserrat', sans-serif;
+  position:relative;
+  left:50%;
+  top:50%;
+  transform:translateX(-50%) translateY(-50%);
+  text-align:center;
+  text-transform:uppercase;
+  z-index:2;
+  width:6cm;
+  margin:0;
+}
+
+/*
+To keep only the logo and restaurant name on the first page we use the CSS property page-break-before
+with the value always. This way the main menu always starts on a new page. In our case the second page.
+*/
+.menuPages{
+  page-break-before:always;
+}
+
+/*
+Each menu section is within one SECTION element, these should not break inbetween if possible. This means
+if a section does not fit on one page, it will move it to the next page.
+*/
+section{
+  page-break-inside:avoid;
+  padding-bottom:1cm;
+}
+
+/*
+All section headings will be italic and have a margin of 1cm on the top and bottom.
+*/
+section h1{
+  font-style:italic;
+  margin:1cm 0;
+}
+
+/*
+For all section headings, except the one for the special items we use the leader() function in an
+:after pseudo element to show the line next to the section title text. We need to change the font here
+otherwise the leader line will not appear solid ("____") but with spaces ("_ _ _ _ _").
+*/
+section:not(.specialItems) h1:after{
+  font-family: 'Montserrat', sans-serif;
+  content:leader(solid);
+  color:var(--main-color);
+}
+
+/*
+To display the images of an section on the left side and the menu items on the right we use flexbox and
+keep some space between them with the justify-content property.
+*/
+section .sectionContent{
+  display:flex;
+  justify-content:space-between;
+}
+
+/*
+The images area will take 40% of the pages width.
+*/
+section .images{
+  width:40%;
+}
+
+/*
+In the first section we will show only one image, a pizza.
+*/
+section .images.img01{
+  background-image:url("https://images.unsplash.com/photo-1546069901-5ec6a79120b0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2555&q=80");
+  background-size:cover;
+  background-position: center;
+}
+
+/*
+For the second and special sections we show two images below each other. both get a height of 47.5%.
+In a later class definition you will see margin bottom of 5% for the first image.
+*/
+section .images .img02,
+section .images .img03,
+section .images .img08,
+section .images .img09{
+  background-size:cover;
+  background-position: center;
+  display:block;
+  height:47.5%;
+}
+
+section .images .img02{
+  background-image:url("https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2600&q=80");
+  margin-bottom:5%;
+}
+
+section .images .img03{
+  background-image:url("https://images.unsplash.com/photo-1546069901-eacef0df6022?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2389&q=80");
+}
+
+/*
+In the third section there will be 4 images displayed. Each image will get a size of 47.5% by 47.5%,
+we use the background-size value "cover" to make sure the area is filled completely.
+*/
+section .images .img04,
+section .images .img05,
+section .images .img06,
+section .images .img07{
+  background-size:cover;
+  background-position: center;
+  display:inline-block;
+  width:47.5%;
+  height:47.5%;
+}
+
+/*
+The two top images get a margin bottom of 5%.
+*/
+section .images .img04,
+section .images .img05{
+  margin-bottom:5%;
+}
+
+/*
+The two left images get a float left.
+*/
+section .images .img04,
+section .images .img06{
+  float:left;
+}
+
+/*
+And the two right images will float on the right, this way we get the space between the images.
+*/
+section .images .img05,
+section .images .img07{
+  float:right;
+}
+
+/*
+The top two images of the third section.
+*/
+section .images .img04{
+  background-image:url("https://images.unsplash.com/photo-1546069901-04dcb46a5e26?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1264&q=80");
+  background-position: top center;
+}
+
+section .images .img05{
+  background-image:url("https://images.unsplash.com/photo-1546069901-5ec6a79120b0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2555&q=80");
+}
+
+/*
+The last two images of the third section.
+*/
+section .images .img06{
+  background-image:url("https://images.unsplash.com/photo-1546069901-55d1670321aa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2555&q=80");
+}
+
+section .images .img07{
+  background-image:url("https://images.unsplash.com/photo-1546069901-1b68da50060b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2600&q=80");
+  background-position: top center;
+}
+
+/*
+In the special section we will show two images below each other, the top one gets a margin bottom of 5%.
+*/
+section .images .img08{
+  background-image:url("https://images.unsplash.com/photo-1546069901-5ec6a79120b0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2555&q=80");
+  margin-bottom:5%;
+}
+
+/*
+Here we set the second image of the special section.
+*/
+section .images .img09{
+  background-image:url("https://images.unsplash.com/photo-1546069901-55d1670321aa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2555&q=80");
+}
+
+/*
+After the images we will style the menu items now, these get a width of 50%. The remaining % will be used
+as space between images and list items.
+*/
+section .items{
+  width:50%;
+}
+
+/*
+For our menu items we use a standard HTML UL element, but we do not want the bullet points in front of
+each menu item.
+*/
+section .items ul{
+  list-style-type:none;
+  margin:0;
+}
+
+/*
+We set a standard font size for the menu items name, price and description.
+*/
+section .items ul li{
+  font-size:10pt;
+}
+
+/*
+Each item in the menu list, which is not the first list item gets a margin top and bottom of 6mm.
+*/
+section .items ul li:not(:first-child){
+  margin:6mm 0;
+}
+
+/*
+The description below the items name and price should max. take 80% of the available space.
+*/
+section .items ul li i{
+  display:block;
+  width:80%;
+}
+
+/*
+The name of an menu item and the price should be bold and the text in uppercase.
+*/
+section .items ul li span{
+  text-transform:uppercase;
+  font-weight:bold;
+}
+
+/*
+Between the menu item's name and its price we use the leader function again to show a
+underline __________ the font needed to be changed to ensure no spaces between the line
+elements ("_ _ _ _").
+*/
+section .items ul li span:not(.price):after{
+  font-family: 'Montserrat', sans-serif;
+  content:leader(solid);
+  color:var(--main-color);
+}
+
+/*
+The price of a menu item should be shown on the right side, we use the float property for this.
+*/
+section .items ul li span.price{
+  float:right;
+}
+
+/*
+For special menu items we have the specials section at the end of the menu. To highlight this we give that
+section a border.
+*/
+section.specialItems{
+  border:.5mm solid var(--main-color);
+  padding:6mm;
+  margin-top:1cm;
+}
+
+/*
+There should be no extra space between the specials section border and the headline within that section
+therefore we set the margin top to 0.
+*/
+section.specialItems h1{
+  margin-top:0;
+}
+
+/*
+All normal sections show the section title and an underline afterwards. The special section is showing
+it in the opposite way, first the underline then the section title. Again we use the leader function
+for the underline.
+*/
+section.specialItems h1:before{
+  font-family: 'Montserrat', sans-serif;
+  content:leader(solid);
+  color:var(--main-color);
+}
+
+/*
+For the notes we use a H3 element for the heading but set the font weight to normal and transform the text
+to uppercase.
+*/
+.note h3{
+  margin:12mm 0 0 0;
+  font-size:10pt;
+  font-weight:normal;
+  text-transform:uppercase;
+}
+
+/*
+The note itself should be shown in italic thats why we use the <i> HTML element, additionally we set a
+font size of 10pt here in the CSS.
+*/
+.note i{
+  font-size:10pt;
+}
+
+/*
+The footer will be shown on all pages, except the first one. So we use position running to move it to a
+page margin box. Inside the footer we have 3 columns which we will create with a flexbox.
+*/
+footer{
+  position:running(footer);
+  display:flex;
+  justify-content:space-between;
+  font-size:8pt;
+}
+
+/*
+For the second and third of these footer columns we also use flexbox so the headers like "Address" and
+"Hours" are on the left side and the actual information on the right side.
+*/
+footer div:not(:first-child){
+  display:flex;
+  justify-content:space-between;
+}
+
+/*
+The bold tag for the second and third column get a margin right of 2mm so there is some space.
+*/
+footer div:not(:first-child) b{
+  margin-right:2mm;
+}
+
+/*
+All bold elements in the footer will transform their text content to uppercase.
+*/
+footer b{
+  text-transform:uppercase;
+}
