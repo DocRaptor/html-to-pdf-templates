@@ -1,10 +1,10 @@
-/* 
-Import the desired font from Google fonts. 
+/*
+Import the desired font from Google fonts.
 */
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:wght@400;700&display=swap');
 
-/* 
-Define all colors used in this template 
+/*
+Define all colors used in this template
 */
 :root{
   --main-color: #CEC3BA;
@@ -17,24 +17,24 @@ Define all colors used in this template
   This CSS highlights how page sizes, margins, and margin boxes are set.
   https://docraptor.com/documentation/article/1067959-size-dimensions-orientation
 
-  Within the page margin boxes content from running elements is used instead of a 
+  Within the page margin boxes content from running elements is used instead of a
   standard content string. The name which is passed in the element() function can
-  be found in the CSS code below in a position property and is defined there by 
+  be found in the CSS code below in a position property and is defined there by
   the running() function.
   */
   size:A4;
   margin:1.5cm 1.5cm 2cm 1.5cm;
-  
+
   @bottom-left{
-  	content:element(footer);
+    content:element(footer);
     background-color:var(--main-color);
   }
-  
+
   @bottom-right-corner{
     content:"";
     background-color:var(--main-color);
   }
-  
+
   @bottom-left-corner{
     content:"";
     background-color:var(--main-color);
@@ -51,9 +51,9 @@ Define all colors used in this template
   page margin box.
   */
   margin:0;
-  background-image:url("./images/cover.png");
+  background-image:url("https://images.unsplash.com/photo-1546069901-d5bfd2cbfb1f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2600&q=80");
   background-size:cover;
-  
+
   @bottom-left{
     content:"";
   }
@@ -105,7 +105,7 @@ header{
 
 /*
 Around the circle itself there is another circle which has no background color but just a border.
-We again position this element and use the border-radius property. This time we just do not set a 
+We again position this element and use the border-radius property. This time we just do not set a
 background color.
 */
 header:after{
@@ -119,7 +119,7 @@ header:after{
   display:inline-block;
   width:13cm;
   height:13cm;
-  
+
 }
 
 /*
@@ -196,8 +196,9 @@ section .images{
 In the first section we will show only one image, a pizza.
 */
 section .images.img01{
-  background-image:url("./images/pizza.png");
+  background-image:url("https://images.unsplash.com/photo-1546069901-5ec6a79120b0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2555&q=80");
   background-size:cover;
+  background-position: center;
 }
 
 /*
@@ -209,24 +210,18 @@ section .images .img03,
 section .images .img08,
 section .images .img09{
   background-size:cover;
+  background-position: center;
   display:block;
   height:47.5%;
 }
 
-/*
-For the first image we use the pizza image again and to keep some space to the next image a margin bottom
-of 5%.
-*/
 section .images .img02{
-  background-image:url("https://images.unsplash.com/photo-1619535860434-ba1d8fa12536?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1972&q=80");
+  background-image:url("https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2600&q=80");
   margin-bottom:5%;
 }
 
-/*
-For the second image in the second section we use the same image as on the cover page.
-*/
 section .images .img03{
-  background-image:url("https://images.unsplash.com/photo-1514944288352-fffac99f0bdf?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80");
+  background-image:url("https://images.unsplash.com/photo-1546069901-eacef0df6022?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2389&q=80");
 }
 
 /*
@@ -238,6 +233,7 @@ section .images .img05,
 section .images .img06,
 section .images .img07{
   background-size:cover;
+  background-position: center;
   display:inline-block;
   width:47.5%;
   height:47.5%;
@@ -268,33 +264,34 @@ section .images .img07{
 }
 
 /*
-The top two images of the third section will be the pizza image.
+The top two images of the third section.
 */
 section .images .img04{
-  background-image:url("https://images.unsplash.com/photo-1579631542720-3a87824fff86?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1900&q=80");
+  background-image:url("https://images.unsplash.com/photo-1546069901-04dcb46a5e26?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1264&q=80");
+  background-position: top center;
 }
 
 section .images .img05{
-  background-image:url("https://images.unsplash.com/photo-1522666257812-173fdc2d11fe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1536&q=80");
+  background-image:url("https://images.unsplash.com/photo-1546069901-5ec6a79120b0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2555&q=80");
 }
 
 /*
-The last two images of the third section are the cover image.
+The last two images of the third section.
 */
 section .images .img06{
-  background-image:url("https://images.unsplash.com/photo-1529312266912-b33cfce2eefd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80");
+  background-image:url("https://images.unsplash.com/photo-1546069901-55d1670321aa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2555&q=80");
 }
 
 section .images .img07{
-  background-image:url("https://images.unsplash.com/photo-1608032076946-23d89c6d6d0b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80");
+  background-image:url("https://images.unsplash.com/photo-1546069901-1b68da50060b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2600&q=80");
+  background-position: top center;
 }
 
 /*
-In the special section we will show two images below each other, both the cover image and the top one
-gets a margin bottom of 5%.
+In the special section we will show two images below each other, the top one gets a margin bottom of 5%.
 */
 section .images .img08{
-  background-image:url("https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2003&q=80");
+  background-image:url("https://images.unsplash.com/photo-1546069901-5ec6a79120b0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2555&q=80");
   margin-bottom:5%;
 }
 
@@ -302,7 +299,7 @@ section .images .img08{
 Here we set the second image of the special section.
 */
 section .images .img09{
-  background-image:url("https://images.unsplash.com/photo-1562785620-d85f43a50f83?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80");
+  background-image:url("https://images.unsplash.com/photo-1546069901-55d1670321aa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2555&q=80");
 }
 
 /*
@@ -314,7 +311,7 @@ section .items{
 }
 
 /*
-For our menu items we use a standard HTML UL element, but we do not want the bullet points in front of 
+For our menu items we use a standard HTML UL element, but we do not want the bullet points in front of
 each menu item.
 */
 section .items ul{
@@ -353,8 +350,8 @@ section .items ul li span{
 }
 
 /*
-Between the menu item's name and its price we use the leader function again to show a 
-underline __________ the font needed to be changed to ensure no spaces between the line 
+Between the menu item's name and its price we use the leader function again to show a
+underline __________ the font needed to be changed to ensure no spaces between the line
 elements ("_ _ _ _").
 */
 section .items ul li span:not(.price):after{
@@ -411,7 +408,7 @@ to uppercase.
 }
 
 /*
-The note itself should be shown in italic thats why we use the <i> HTML element, additionally we set a 
+The note itself should be shown in italic thats why we use the <i> HTML element, additionally we set a
 font size of 10pt here in the CSS.
 */
 .note i{
@@ -430,7 +427,7 @@ footer{
 }
 
 /*
-For the second and third of these footer columns we also use flexbox so the headers like "Address" and 
+For the second and third of these footer columns we also use flexbox so the headers like "Address" and
 "Hours" are on the left side and the actual information on the right side.
 */
 footer div:not(:first-child){
