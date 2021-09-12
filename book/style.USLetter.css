@@ -1,0 +1,295 @@
+/* 
+Import the desired font from Google fonts. 
+*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+/* 
+Define all colors used in this template 
+*/
+:root{
+  --highlight-color-one: #1FC2DE;
+  --highlight-color-one-transparent: #1FC2DEB3;
+  --text-color: #303E48;
+  --table-row-separator-color:#CEC3BA;
+}
+
+@page{
+  /*
+  This CSS highlights how page sizes and margin boxes are set.
+  https://docraptor.com/documentation/article/1067959-size-dimensions-orientation
+  Within the page margin boxes content from running elements is used instead of a 
+  standard content string. The name which is passed in the element() function can
+  be found in the CSS code below in a position property and is defined there by 
+  the running() function.
+  */
+  size:USLetter;
+  margin:1.5cm 1.5cm 2cm 1.5cm;
+  counter-reset: footnote;
+  
+  @top-left{
+  	content:element(header);
+  }
+  
+  @bottom-left{
+    width:100%;
+  	content:element(footer);
+  }
+  
+  @bottom-right{
+    font-family: 'Montserrat', sans-serif;
+    font-size:8pt;
+    font-weight:bold;
+    color:var(--highlight-color-one);
+  	content:counter(page, decimal-leading-zero);
+  }
+  
+  @footnote {
+    border-top:.125mm solid var(--table-row-separator-color);
+    padding-top:2mm;
+  }
+}
+
+@page bibliography{
+  @bottom-left{
+    width:100%;
+  	content:element(footerBibliography);
+  }
+}
+
+@page:first{
+  /*
+  This CSS highlights how the margin, background and page margin boxes are set 
+  only for the first page of the PDF.
+  
+  As the first or cover page should not get the header and footer like all other
+  pages, we set the content of these page margin boxes to empty.
+  */
+  margin:0;
+  background-size:cover;
+  background-image:url(https://images.unsplash.com/photo-1497250681960-ef046c08a56e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80);
+  
+  @top-left{
+    content:"";
+  }
+  
+  @bottom-left{
+    content:"";
+  }
+}
+
+/* 
+The body itself has no margin or padding.
+Additionally the default font family, size and color for the document is defined
+here.
+*/
+body{
+  margin:0;
+  padding:0;
+  color:var(--text-color);
+  font-family: 'Montserrat', sans-serif;
+  font-size:10pt;
+  counter-reset:chapters;
+}
+
+/*
+The links in the document should not be highlighted by an different color and underline
+instead we use the color value inherit to get the current texts color.
+*/
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+/*
+Any HR HTML element should get the highlight color.
+*/
+hr{
+  height:0;
+  border:0;
+  border-top:.75mm solid var(--highlight-color-one);
+  margin:1cm 0 1cm 0;
+}
+
+/*
+The page header in our document uses the HTML HEADER element, we define a height 
+of 2cm and a border on the bottom of half a millimeter.
+As mentioned above in the comment for the @page the position property with the 
+value running(header) makes this HTML element float into the top left page margin
+box. This page margin box repeats on every page in case we would have a multi-page
+proposal.
+*/
+header{
+  position:running(header);
+  height:2cm;
+  border-bottom:.5mm solid var(--table-row-separator-color);
+}
+
+.coverPage,
+.tocPage,
+.chapterPage{
+  page-break-after:always;
+}
+
+.pageBreak{
+  page-break-before:always;
+  height:1cm;
+}
+
+.coverPage{
+  color:white;
+  margin:2cm;
+}
+
+.coverPage h1{
+  margin-top:6cm;
+  font-size:64pt;
+}
+
+.coverPage .coverFooter{
+  text-transform:uppercase;
+  font-size:8pt;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:absolute;
+  bottom:1cm;
+  width:calc(100% - 4cm);
+}
+
+.coverPage .coverFooter a:first-of-type{
+  font-weight:bold;
+}
+
+.coverPage .coverFooter hr{
+  height:.5mm;
+  background-color:white;
+  border-top:0;
+  width:40%;
+}
+
+.bibliographyPage{
+  page: bibliography;
+}
+
+.chapterPage h1,
+.tocPage h1,
+.bibliographyPage h1{
+  margin-top:1cm;
+  text-transform:uppercase;
+}
+
+.chapterPage h1::before,
+.bibliographyPage h1::before{
+  counter-increment:chapters;
+  content: counter(chapters, decimal-leading-zero) " ";
+}
+
+.imageContainer{
+  max-height:9cm;
+  overflow:hidden;
+}
+
+.imageContainer img{
+  max-width:100%;
+}
+
+.imageContainerColumns{
+  overflow:hidden;
+  max-height:180mm;
+}
+
+.imageContainerColumns img{
+  max-height:100%;
+}
+
+.twoColumns,
+.threeColumns{
+  display:flex;
+  align-items:stretch;
+  justify-content:space-between;
+  margin:1cm 0 1cm 0;
+}
+
+.twoColumns > *{
+  width:48%;
+}
+
+.threeColumns > *{
+  width:30%;
+}
+
+.twoTextColumns{
+  margin:1cm 0 1cm 0;
+  column-count:2;
+  column-gap:1cm;
+}
+
+dl,
+.highlight,
+.highlightLight{
+  color:var(--highlight-color-one);
+}
+
+.highlight{
+  color:var(--highlight-color-one);
+  font-weight:bold;
+  font-size:14pt;
+}
+
+.imageContainer + .highlight{
+  margin-top:1cm;
+}
+
+h4{
+  font-size:10pt;
+  margin:0;
+}
+
+p{
+  margin-top:0;
+}
+
+dt{
+  font-size:16pt;
+}
+
+dd{
+  margin:0 0 .5cm 0;
+}
+
+.footnote { /* This element is for a single footnote body */
+  float: footnote;
+  margin-bottom:2mm;
+  color:var(--text-color);
+  font-family: 'Montserrat', sans-serif;
+  font-size:8pt;
+  font-weight:normal;
+  footnote-style-position:inside;
+}
+
+.footerStandard,
+.footerBibliography{
+  position:running(footer);
+  color:var(--highlight-color-one);
+  display:flex;
+  align-items:center;
+  font-size:8pt;
+  text-transform:uppercase;
+}
+
+footer a:first-of-type{
+  font-weight:bold;
+}
+
+footer hr{
+  margin:0 3% 0 3%;
+  height:.5mm;
+  background-color:var(--highlight-color-one);
+  border-top:0;
+  width:70%;
+  display:inline-block;
+}
+
+.footerBibliography{
+  position:running(footerBibliography);
+}

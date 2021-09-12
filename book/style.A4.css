@@ -189,13 +189,23 @@ header{
   overflow:hidden;
 }
 
-img{
-  width:100%;
+.imageContainer img{
+  max-width:100%;
+}
+
+.imageContainerColumns{
+  overflow:hidden;
+  max-height:180mm;
+}
+
+.imageContainerColumns img{
+  max-height:100%;
 }
 
 .twoColumns,
 .threeColumns{
   display:flex;
+  align-items:stretch;
   justify-content:space-between;
   margin:1cm 0 1cm 0;
 }
