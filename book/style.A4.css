@@ -24,6 +24,7 @@ Define all colors used in this template
   */
   size:A4;
   margin:2cm 2cm 3cm 2cm;
+  counter-reset: footnote;
   
   @top-left{
   	content:element(header);
@@ -40,6 +41,11 @@ Define all colors used in this template
     font-weight:bold;
     color:var(--highlight-color-one);
   	content:counter(page, decimal-leading-zero);
+  }
+  
+  @footnote {
+    border-top:.125mm solid var(--table-row-separator-color);
+    padding-top:2mm;
   }
 }
 
@@ -198,6 +204,16 @@ dt{
 
 dd{
   margin:0 0 .5cm 0;
+}
+
+.footnote { /* This element is for a single footnote body */
+  float: footnote;
+  margin-bottom:2mm;
+  color:var(--text-color);
+  font-family: 'Montserrat', sans-serif;
+  font-size:10pt;
+  font-weight:normal;
+  footnote-style-position:inside;
 }
 
 .footerStandard,
