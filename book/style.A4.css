@@ -43,6 +43,13 @@ Define all colors used in this template
   }
 }
 
+@page bibliography{
+  @bottom-left{
+    width:100%;
+  	content:element(footerBibliography);
+  }
+}
+
 @page:first{
   /*
   This CSS highlights how the margin, background and page margin boxes are set 
@@ -120,6 +127,10 @@ header{
   height:1cm;
 }
 
+.bibliographyPage{
+  page: bibliography;
+}
+
 .chapterPage h1,
 .tocPage h1,
 .bibliographyPage h1{
@@ -189,14 +200,18 @@ dd{
   margin:0 0 .5cm 0;
 }
 
-footer{
+.footerStandard,
+.footerBibliography{
   position:running(footer);
-  font-weight:bold;
   color:var(--highlight-color-one);
   display:flex;
   align-items:center;
   font-size:8pt;
   text-transform:uppercase;
+}
+
+footer a:first-of-type{
+  font-weight:bold;
 }
 
 footer hr{
@@ -206,4 +221,8 @@ footer hr{
   border-top:0;
   width:70%;
   display:inline-block;
+}
+
+.footerBibliography{
+  position:running(footerBibliography);
 }
