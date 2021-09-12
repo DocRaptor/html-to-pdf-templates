@@ -23,7 +23,7 @@ Define all colors used in this template
   the running() function.
   */
   size:A4;
-  margin:2cm 2cm 3cm 2cm;
+  margin:2cm 2cm 2.5cm 2cm;
   counter-reset: footnote;
   
   @top-left{
@@ -66,6 +66,7 @@ Define all colors used in this template
   */
   margin:0;
   background-size:cover;
+  background-image:url(https://images.unsplash.com/photo-1497250681960-ef046c08a56e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80);
   
   @top-left{
     content:"";
@@ -134,6 +135,38 @@ header{
   height:1cm;
 }
 
+.coverPage{
+  color:white;
+  margin:2cm;
+}
+
+.coverPage h1{
+  margin-top:6cm;
+  font-size:64pt;
+}
+
+.coverPage .coverFooter{
+  text-transform:uppercase;
+  font-size:8pt;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:absolute;
+  bottom:1cm;
+  width:calc(100% - 4cm);
+}
+
+.coverPage .coverFooter a:first-of-type{
+  font-weight:bold;
+}
+
+.coverPage .coverFooter hr{
+  height:.5mm;
+  background-color:white;
+  border-top:0;
+  width:40%;
+}
+
 .bibliographyPage{
   page: bibliography;
 }
@@ -198,6 +231,7 @@ dl,
 }
 
 h4{
+  font-size:10pt;
   margin:0;
 }
 
@@ -239,7 +273,7 @@ footer a:first-of-type{
 
 footer hr{
   margin:0 3% 0 3%;
-  height:.75mm;
+  height:.5mm;
   background-color:var(--highlight-color-one);
   border-top:0;
   width:70%;
