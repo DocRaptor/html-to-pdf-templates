@@ -21,6 +21,9 @@ Define all colors used in this template
   standard content string. The name which is passed in the element() function can
   be found in the CSS code below in a position property and is defined there by 
   the running() function.
+
+  On the bottom right page margin box we also add the current page number and 
+  in the @footnote rule we define the style of the footnote area.
   */
   size:A4;
   margin:2cm 2cm 2.5cm 2cm;
@@ -49,6 +52,11 @@ Define all colors used in this template
   }
 }
 
+
+/*
+The bibliography page has a different HTML element as footer content so instead of
+the running element "footer" we add the running element "footerBibliography" here.
+*/
 @page bibliography{
   @bottom-left{
     width:100%;
@@ -81,6 +89,8 @@ Define all colors used in this template
 The body itself has no margin or padding.
 Additionally the default font family, size and color for the document is defined
 here.
+
+Also we define the counter for the chapter numbers here with the property counter-reset.
 */
 body{
   margin:0;
@@ -116,7 +126,7 @@ of 2cm and a border on the bottom of half a millimeter.
 As mentioned above in the comment for the @page the position property with the 
 value running(header) makes this HTML element float into the top left page margin
 box. This page margin box repeats on every page in case we would have a multi-page
-proposal.
+book.
 */
 header{
   position:running(header);
@@ -124,27 +134,47 @@ header{
   border-bottom:.5mm solid var(--table-row-separator-color);
 }
 
+/*
+Anything after the cover, toc and chapter elements should start on a new page so we do
+set a page break of always after these elements.
+*/
 .coverPage,
 .tocPage,
 .chapterPage{
   page-break-after:always;
 }
 
+/*
+For the pageBreak elements we also set a height of 1cm to get some spacing between the header 
+line and the content.
+*/
 .pageBreak{
   page-break-before:always;
   height:1cm;
 }
 
+/*
+On the cover page the text color needs to be white as we have a background image on the whole
+page. Also we set a margin of 2cm.
+*/
 .coverPage{
   color:white;
   margin:2cm;
 }
 
+/*
+The book title should have a margin to the top of 6cm and also a font size of 64pt.
+*/
 .coverPage h1{
   margin-top:6cm;
   font-size:64pt;
 }
 
+/*
+The footer on the cover page containing the website, email, phone number and line need 
+to be on the bottom of the page so we set the position to absolute, bottom 1cm. Also 
+the items should be aligned in the center so the line is in the vertical center of the text.
+*/
 .coverPage .coverFooter{
   text-transform:uppercase;
   font-size:8pt;
@@ -156,10 +186,16 @@ header{
   width:calc(100% - 4cm);
 }
 
+/*
+The first link in the cover page footer (the like to the website) should be bold.
+*/
 .coverPage .coverFooter a:first-of-type{
   font-weight:bold;
 }
 
+/*
+The line in the footer has a height of 0.5mm and white as a background color.
+*/
 .coverPage .coverFooter hr{
   height:.5mm;
   background-color:white;
@@ -167,10 +203,18 @@ header{
   width:40%;
 }
 
+/*
+To get another page footer on the bibliography we need to use the page property 
+and set a unique page name for which we defined a @page rule above.
+*/
 .bibliographyPage{
   page: bibliography;
 }
 
+/*
+Most <h1> header elements (except cover page) get a margin top of 1cm and the 
+text is transformed to uppercase.
+*/
 .chapterPage h1,
 .tocPage h1,
 .bibliographyPage h1{
@@ -178,30 +222,56 @@ header{
   text-transform:uppercase;
 }
 
+/*
+The content chapter pages and the bibliography page get a "chapter" number 
+before their title. For this we use the chapters counter. The second parameter
+in the counter() funtion allows us to add a leading 0 to chapter numbers below
+10.
+*/
 .chapterPage h1::before,
 .bibliographyPage h1::before{
   counter-increment:chapters;
   content: counter(chapters, decimal-leading-zero) " ";
 }
 
+/*
+To ensure images do not take too much space you could either take care that the
+editors select images in the proper sizing or define a container where you set
+a fixed height and hide anything which overflows.
+*/
 .imageContainer{
   max-height:9cm;
   overflow:hidden;
 }
 
+/*
+In the image container all images should have a max width of 100% of the wrapping
+element.
+*/
 .imageContainer img{
   max-width:100%;
 }
 
+/*
+In two colums layouts where one colum is a image we also use a container to ensure
+a max size, in this case it is dependend on the max height instead of the width.
+*/
 .imageContainerColumns{
   overflow:hidden;
   max-height:180mm;
 }
 
+/*
+In the tow column image container the image should not exceed 100% of the containers
+height.
+*/
 .imageContainerColumns img{
   max-height:100%;
 }
 
+/*
+All two and three column content is done via flexbox.
+*/
 .twoColumns,
 .threeColumns{
   display:flex;
@@ -210,54 +280,98 @@ header{
   margin:1cm 0 1cm 0;
 }
 
+/*
+In two column content each column gets a width of 48% so 
+we get 4% of space between them.
+*/
 .twoColumns > *{
   width:48%;
 }
 
+/*
+In three column content each column gets a width of 30% so 
+between the columns we have 3.33% space.
+*/
 .threeColumns > *{
   width:30%;
 }
 
+/*
+If both columns are text only we use this class and simply set
+a column gap of 1cm.
+*/
 .twoTextColumns{
   margin:1cm 0 1cm 0;
   column-count:2;
   column-gap:1cm;
 }
 
+/*
+The table of contents elements (<dl>) and all highlighted text should 
+get the color defined in the var --highlight-color-one.
+*/
 dl,
 .highlight,
 .highlightLight{
   color:var(--highlight-color-one);
 }
 
+/*
+Additionally the main highlight text should be bold and larger than the others.
+*/
 .highlight{
-  color:var(--highlight-color-one);
   font-weight:bold;
   font-size:14pt;
 }
 
+/*
+If a image container is followed by a highlight text there should be a gap of 1cm 
+between them.
+*/
 .imageContainer + .highlight{
   margin-top:1cm;
 }
 
+/*
+Within the texts we use a lot of <h4> headings and we want them to look the same
+as the normal text, except their default bold style. So for that we set the text
+size to 10pt and margin to 0 so there is no gap between the <h4> and <p> elements.
+*/
 h4{
   font-size:10pt;
   margin:0;
 }
 
+/*
+As mentioned in the h4 class we do not want a gap between the <h4> and <p> elements.
+So the margin top is set to 0.
+*/
 p{
   margin-top:0;
 }
 
+/*
+For the table of contents we use <dt> and <dd> elements, this <dt> elements should 
+be a little larger than the normal text so we set a font size of 16pt.
+*/
 dt{
   font-size:16pt;
 }
 
+/*
+After each table of contents entry we at a 0.5cm gap to the next entry.
+*/
 dd{
   margin:0 0 .5cm 0;
 }
 
-.footnote { /* This element is for a single footnote body */
+/*
+All footnote elements are getting the float "footnote" property to remove them
+from the normal page flow and add them to the footnote area. The rest ensures 
+the style of the footnote is the same as the normal text, just a smaller font
+size of 8pt.
+*/
+.footnote {
   float: footnote;
   margin-bottom:2mm;
   color:var(--text-color);
@@ -267,6 +381,9 @@ dd{
   footnote-style-position:inside;
 }
 
+/*
+For the footer we use flexbox to align the items vertically.
+*/
 .footerStandard,
 .footerBibliography{
   position:running(footer);
@@ -277,10 +394,17 @@ dd{
   text-transform:uppercase;
 }
 
+/*
+The first link element (website link) in each footer should be bold.
+*/
 footer a:first-of-type{
   font-weight:bold;
 }
 
+/*
+This is the style of the line in the footer, we give a fixed height of 0.5mm and
+a relative size of 70%, the background color is the content of the CSS var --highlight-color-one.
+*/
 footer hr{
   margin:0 3% 0 3%;
   height:.5mm;
@@ -290,6 +414,10 @@ footer hr{
   display:inline-block;
 }
 
+/*
+The only difference between the footer of the chapter pages and the bibliography 
+is that a different HTML element is used for the running position.
+*/
 .footerBibliography{
   position:running(footerBibliography);
 }
