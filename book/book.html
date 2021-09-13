@@ -1,12 +1,17 @@
+<!-- The header of the content pages is only a line so we have no content here but add the line with our CSS. -->
 <header>
-
 </header>
+<!-- The footer for all content pages contains the link to the website and a line next to it. -->
 <footer class="footerStandard">
     <a href="https://companywebsite.com">
       companywebsite.com
     </a>
     <hr />
 </footer>
+<!-- 
+    The footer for the bibliography contains more information then the footer pages of the standard pages,
+    it contains the website, email and phone number.
+-->
 <footer class="footerBibliography">
     <div>
       <a href="https://companywebsite.com">
@@ -23,6 +28,10 @@
     </div>
     <hr />
 </footer>
+<!-- 
+    The cover page has a full page background image which we will set via CSS, the book title and a footer 
+    with the website, email and phone number.
+-->
 <div class="coverPage">
     <h1>Title of the Book Goes Here</h1>
     <div class="coverFooter">
@@ -34,6 +43,9 @@
       <hr />
     </div>
 </div>
+<!--
+    The table of contents contains a sample toc based on <dl> elements and a image at the bottom of the toc.
+-->
 <div class="tocPage">
     <h1>Table of Contents</h1>
     <hr />
@@ -89,6 +101,11 @@
     </div>
     <div class="imageContainer"><img src="https://images.unsplash.com/photo-1516387938699-a93567ec168e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80" /></div>
 </div>
+<!--
+    Each chapter of the book is wrapped by a <div> with the .chapterPage class.
+    Each chapter has a title <h1> element a line below and then some highlighted text.
+    In this chapter we also have light highlighted text (blue but not bold) and a two column text.
+-->
 <div class="chapterPage">
     <h1>Name of Chapter</h1>
     <hr />
@@ -114,6 +131,15 @@
         <p>torquent per conubia nostra, per inceptos himenaeos. Nullam lacus turpis, iaculis quis mattis at, consequat vel sapien. Pellentesque finibus ligula mauris, vitae rutrum metus ullamcorper at. Aliquam erat volutpat. Vestibulum pulvinar dui sapien, mollis tempus tortor laoreet ac.</p>
     </div>
 </div>
+<!-- 
+    The next chapter page has a highlighted paragraph, a two column text and an image below.
+    Further this chapter spreads over multiple pages and continues with a forced page break.
+    Then we get a page with a image on the top, followed by a two column text and a highlighted 
+    sentence.
+    Another page break and again a highlighted text, two column text and a image.
+    The last pages of this chapter also contain footnotes, you can see the <span> elements with
+    the class .footnote below.
+-->
 <div class="chapterPage">
     <h1>Name of Chapter</h1>
     <hr />
@@ -201,6 +227,9 @@
         </div>
     </div>
 </div>
+<!--
+    The last page in our book is the bibliography page with one column text and one image.
+-->
 <div class="bibliographyPage">
     <h1>Bibliography</h1>
     <hr />
