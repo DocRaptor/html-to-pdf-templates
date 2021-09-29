@@ -140,10 +140,10 @@ up by half of the circle's height with the help of position absolute.
 aside span.img{
   width:3cm;
   height:3cm;
-  background-image:url("./images/dp.png");
+  background-image:url("https://images.unsplash.com/photo-1583195764036-6dc248ac07d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2376&q=80");
+  background-size:cover;
   background-repeat:no-repeat;
-  background-size:120%;
-  background-position:-15px -25px;
+  background-position:center;
   border:1.5mm solid var(--text-color);
   border-radius:100%;
   display:block;
@@ -218,6 +218,7 @@ All headers level 3 in the main content get a margin top of 1cm.
 */
 main h3{
   margin-top:1cm;
+  margin-bottom:1em;
 }
 
 /*
@@ -261,7 +262,7 @@ main ul{
 /*
 Headers level 4 followed by an paragraph get no margin so there is no space between them.
 */
-main ol li h4 + p{
+main h4 + p{
   margin:0;
 }
 

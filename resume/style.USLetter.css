@@ -1,10 +1,10 @@
-/* 
-Import the desired font from Google fonts. 
+/*
+Import the desired font from Google fonts.
 */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;1,400&display=swap');
 
-/* 
-Define all colors used in this template 
+/*
+Define all colors used in this template
 */
 :root{
   --main-highlight-color:#60D0E4;
@@ -18,43 +18,43 @@ Define all colors used in this template
   This CSS highlights how page sizes, margins, and margin boxes are set.
   https://docraptor.com/documentation/article/1067959-size-dimensions-orientation
 
-  Within the page margin boxes content from running elements is used instead of a 
+  Within the page margin boxes content from running elements is used instead of a
   standard content string. The name which is passed in the element() function can
-  be found in the CSS code below in a position property and is defined there by 
+  be found in the CSS code below in a position property and is defined there by
   the running() function.
   */
   size:USLetter;
   margin:5cm 1.2cm 1.2cm 8cm;
-  
+
   @top-left-corner{
     content:"";
     background-color:var(--main-highlight-color);
   }
-  
+
   @top-left{
     content:element(header);
     margin-left:-8cm;
     width:210mm;
     background-color:var(--main-highlight-color);
   }
-  
+
   @top-right-corner{
     content:"";
     background-color:var(--main-highlight-color);
   }
-  
+
   @left-top{
     content:element(aside);
     background-color:var(--secondary-highlight-color);
   }
-  
+
   @bottom-left-corner{
     content:"";
     background-color:var(--secondary-highlight-color);
   }
 }
 
-/* 
+/*
 The body itself is used to set the default font family, size and color for the document.
 */
 body{
@@ -86,7 +86,7 @@ The page header in our document uses the HTML HEADER element, it will appear
 in the top page margin boxes (see @page rule above). Also a padding of top and bottom
 1cm and left and right 1.5cm is set.
 
-To show the name on the left and details like the current title, email address etc on the 
+To show the name on the left and details like the current title, email address etc on the
 right side we use flexbox.
 */
 header{
@@ -118,7 +118,7 @@ header div h2{
 }
 
 /*
-The aside element uses the position running to move the element in the page margin boxes 
+The aside element uses the position running to move the element in the page margin boxes
 on the left side of each page.
 
 The content itself gets a padding of 1.5cm on all sides.
@@ -130,20 +130,20 @@ aside{
 }
 
 /*
-The image of Joe McFadden is placed in a circle with an black border. 
+The image of Joe McFadden is placed in a circle with an black border.
 To do so we set a fixed size, the image as background image, position the image
 and apply the border and border radius.
 
-Additionally we want the image to be partly in the header section so we move it 
+Additionally we want the image to be partly in the header section so we move it
 up by half of the circle's height with the help of position absolute.
 */
 aside span.img{
   width:3cm;
   height:3cm;
-  background-image:url("./images/dp.png");
+  background-image:url("https://images.unsplash.com/photo-1583195764036-6dc248ac07d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2376&q=80");
+  background-size:cover;
   background-repeat:no-repeat;
-  background-size:120%;
-  background-position:-15px -25px;
+  background-position:center;
   border:1.5mm solid var(--text-color);
   border-radius:100%;
   display:block;
@@ -153,7 +153,7 @@ aside span.img{
 
 /*
 The sections in the aside element are separated by hr elements. We use a margin
-of 2cm on the top, 0 left and right and half a centimeter on the bottom. 
+of 2cm on the top, 0 left and right and half a centimeter on the bottom.
 
 The height of the hr element gets set to 0, we use a border instead with the same
 color as the text.
@@ -218,10 +218,11 @@ All headers level 3 in the main content get a margin top of 1cm.
 */
 main h3{
   margin-top:1cm;
+  margin-bottom:1em;
 }
 
 /*
-The professional experience is done via an ordered list, as we want nicely styled list points 
+The professional experience is done via an ordered list, as we want nicely styled list points
 so instead of using decimal or decimal with leading zero as list style type, we set it to none.
 
 We actually use a counter for the list points and to do so we first need to reset it.
@@ -261,7 +262,7 @@ main ul{
 /*
 Headers level 4 followed by an paragraph get no margin so there is no space between them.
 */
-main ol li h4 + p{
+main h4 + p{
   margin:0;
 }
 
