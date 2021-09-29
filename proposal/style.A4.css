@@ -44,7 +44,7 @@ Define all colors used in this template
   pages, we set the content of these page margin boxes to empty.
   */
   margin:0;
-  background-image:url("./images/cover.png");
+  background-image:url("https://images.unsplash.com/photo-1555791751-88f7ffce562d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1587&q=80");
   background-size:cover;
   
   @top-left{
