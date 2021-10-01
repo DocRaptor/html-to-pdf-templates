@@ -90,6 +90,22 @@ the running element "footer" we add the running element "footerBibliography" her
   }
 }
 
+@page noFooterPage{
+  background:var(--highlight-color-one-transparent);
+  
+  @top-left{
+    content:"";
+  }
+  
+  @bottom-right{
+    content:"";
+  }
+  
+  @bottom-left{
+    content:"";
+  }
+}
+
 /* 
 The body itself has no margin or padding.
 Additionally the default font family, size and color for the document is defined
@@ -104,6 +120,7 @@ body{
   font-family: 'Montserrat', sans-serif;
   font-size:10pt;
   counter-reset:entries;
+  counter-reset:entriesImageAndText;
 }
 
 /*
@@ -144,7 +161,8 @@ Anything after the cover, toc and chapter elements should start on a new page so
 set a page break of always after these elements.
 */
 .coverPage,
-.chapterPage{
+.chapterPage,
+.noFooterPage{
   page-break-before:always;
 }
 
@@ -219,12 +237,118 @@ and set a unique page name for which we defined a @page rule above.
   page: lastPage;
 }
 
+.imageAndLogoPage .image{
+  position:absolute;
+  height:95%;
+  overflow:hidden;
+}
+
+.imageAndLogoPage img{
+  max-width:100%;
+}
+
+.imageAndTextPage .image{
+  position:absolute;
+  left:-2cm;
+  top:-2cm;
+  width:calc(100% + 4cm);
+  height:70%;
+  overflow:hidden;
+}
+
+.imageAndTextPage img{
+  max-width:100%;
+}
+
+.imageAndTextPage .timeline{
+  position:absolute;
+  bottom:0;
+}
+
+.imageAndTextPage .timeline .entry{
+  counter-increment:entriesImageAndText;
+}
+
+.imageAndTextPage .timeline .entry:nth-child(2){
+  margin-top:1cm;
+}
+
+.imageAndTextPage .timeline .entry:nth-child(3){
+  margin-top:2cm;
+}
+
+/*
+The element with the icon class is used to display the number of the timeline entry and
+the arrow pointing to the next entry. The number is done in the :before pseudo element, where
+we draw a 12x12mm circle and center the number in bold and black.
+*/
+.imageAndTextPage .icon:before{
+  content: counter(entriesImageAndText);
+  border:0.125cm solid white;
+}
+
+.textAndImagePage p{
+  color:white;
+  font-size:18pt;
+  line-height:1.5;
+  font-weight:bold;
+}
+
+.textAndImagePage .image{
+  position:absolute;
+  left:-2cm;
+  bottom:-2.5cm;
+  width:calc(100% + 4cm);
+  height:70%;
+  overflow:hidden;
+}
+
+.textAndImagePage img{
+  max-width:100%;
+}
+
+.noFooterPage{
+  page: noFooterPage;
+}
+
+.noFooterPage .logo{
+  background-color:var(--circle-color);
+  border-radius:100%;
+  display:inline-block;
+  width:6cm;
+  height:6cm;
+  margin-right:1cm;
+  position:absolute;
+  bottom:-1cm;
+  left:1cm;
+}
+
+/*
+The header on the cover page uses a different font family than all other H1 elements we have
+that's why we first overwrite the font. With the position and transform we move the element to the
+center of the circle.
+*/
+.noFooterPage .logo h1{
+  font-family: 'Montserrat', sans-serif;
+  font-size:12pt;
+  color:var(--text-color);
+  position:relative;
+  left:50%;
+  top:50%;
+  transform:translateX(-50%) translateY(-50%);
+  text-align:center;
+  text-transform:uppercase;
+  z-index:2;
+  width:6cm;
+  margin:0;
+}
+
 /*
 Around the headers H1 element we want to show a circle, this is done by applying border-radius 100%.
 Also the element needs to be centered on the page, for this we use position absolute and the transform
 property.
 */
-.logo{
+.lastPage .logo{
   background-color:var(--circle-color);
   border-radius:100%;
   position:relative;
@@ -239,7 +363,7 @@ Around the circle itself there is another circle which has no background color b
 We again position this element and use the border-radius property. This time we just do not set a
 background color.
 */
-.logo:after{
+.lastPage .logo:after{
   content:"";
   position:absolute;
   left:50%;
@@ -250,7 +374,6 @@ background color.
   display:inline-block;
   width:3.5cm;
   height:3.5cm;
-
 }
 
 /*
@@ -258,7 +381,7 @@ The header on the cover page uses a different font family than all other H1 elem
 that's why we first overwrite the font. With the position and transform we move the element to the
 center of the circle.
 */
-.logo h1{
+.lastPage .logo h1{
   font-family: 'Montserrat', sans-serif;
   font-size:8pt;
   color:var(--text-color);
