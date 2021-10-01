@@ -1,0 +1,552 @@
+/* 
+Import the desired font from Google fonts. 
+*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+/* 
+Define all colors used in this template 
+*/
+:root{
+  --highlight-color-one: #1FC2DE;
+  --highlight-color-one-transparent: #1FC2DEB3;
+  --text-color: #303E48;
+  --table-row-separator-color:#CEC3BA;
+  --circle-color: rgba(255, 255, 255, .8);
+}
+
+@page{
+  /*
+  This CSS highlights how page sizes and margin boxes are set.
+  https://docraptor.com/documentation/article/1067959-size-dimensions-orientation
+  Within the page margin boxes content from running elements is used instead of a 
+  standard content string. The name which is passed in the element() function can
+  be found in the CSS code below in a position property and is defined there by 
+  the running() function.
+
+  On the bottom right page margin box we also add the current page number and 
+  in the @footnote rule we define the style of the footnote area.
+  */
+  size:A4;
+  margin:2cm 2cm 2.5cm 2cm;
+  counter-reset: footnote;
+  
+  @top-left{
+  	content:element(header);
+  }
+  
+  @bottom-left{
+    width:100%;
+  	content:element(footer);
+  }
+}
+
+
+/*
+The bibliography page has a different HTML element as footer content so instead of
+the running element "footer" we add the running element "footerBibliography" here.
+*/
+@page lastPage{
+  background-image:url("https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1887&q=80");
+  background-size:cover;
+  margin:2cm 2cm 6cm 2cm;
+  
+  @top-left{
+    content:"";
+  }
+  
+  @bottom-right{
+    content:"";
+  }
+  
+  @bottom-left{
+    width:100%;
+  	content:element(footerLast);
+  }
+}
+
+@page:first{
+  /*
+  The first page gets a different style via the :first selector, as we want a full page
+  cover image we set the margin to 0 and add the image with a background-size "cover".
+
+  Also on the first page we do not want the footer with the restaurants address, which
+  appears on all other pages, therefore we set the content to "" in the bottom left
+  page margin box.
+  */
+  margin:0;
+  background-image:url("https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1887&q=80");
+  background-size:cover;
+  
+  @top-left{
+    content:"";
+  }
+  
+  @bottom-right{
+    content:"";
+  }
+  
+  @bottom-left{
+    content:"";
+  }
+}
+
+/* 
+The body itself has no margin or padding.
+Additionally the default font family, size and color for the document is defined
+here.
+
+Also we define the counter for the chapter numbers here with the property counter-reset.
+*/
+body{
+  margin:0;
+  padding:0;
+  color:var(--text-color);
+  font-family: 'Montserrat', sans-serif;
+  font-size:10pt;
+  counter-reset:entries;
+}
+
+/*
+The links in the document should not be highlighted by an different color and underline
+instead we use the color value inherit to get the current texts color.
+*/
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+/*
+Any HR HTML element should get the highlight color.
+*/
+hr{
+  height:0;
+  border:0;
+  border-top:.75mm solid var(--highlight-color-one);
+  margin:1cm 0 1cm 0;
+}
+
+/*
+The page header in our document uses the HTML HEADER element, we define a height 
+of 2cm and a border on the bottom of half a millimeter.
+As mentioned above in the comment for the @page the position property with the 
+value running(header) makes this HTML element float into the top left page margin
+box. This page margin box repeats on every page in case we would have a multi-page
+book.
+*/
+header{
+  position:running(header);
+  height:2cm;
+  border-bottom:.5mm solid var(--table-row-separator-color);
+}
+
+/*
+Anything after the cover, toc and chapter elements should start on a new page so we do
+set a page break of always after these elements.
+*/
+.coverPage,
+.chapterPage{
+  page-break-before:always;
+}
+
+/*
+For the pageBreak elements we also set a height of 1cm to get some spacing between the header 
+line and the content.
+*/
+.pageBreak{
+  page-break-before:always;
+  height:1cm;
+}
+
+/*
+Around the headers H1 element we want to show a circle, this is done by applying border-radius 100%.
+Also the element needs to be centered on the page, for this we use position absolute and the transform
+property.
+*/
+.coverPage{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translateX(-50%) translateY(-50%);
+  background-color:var(--circle-color);
+  border-radius:100%;
+  display:inline-block;
+  width:12cm;
+  height:12cm;
+}
+
+/*
+Around the circle itself there is another circle which has no background color but just a border.
+We again position this element and use the border-radius property. This time we just do not set a
+background color.
+*/
+.coverPage:after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translateX(-50%) translateY(-50%);
+  border:1mm solid var(--circle-color);
+  border-radius:100%;
+  display:inline-block;
+  width:13cm;
+  height:13cm;
+
+}
+
+/*
+The header on the cover page uses a different font family than all other H1 elements we have
+that's why we first overwrite the font. With the position and transform we move the element to the
+center of the circle.
+*/
+.coverPage h1{
+  font-family: 'Montserrat', sans-serif;
+  position:relative;
+  left:50%;
+  top:50%;
+  transform:translateX(-50%) translateY(-50%);
+  text-align:center;
+  text-transform:uppercase;
+  z-index:2;
+  width:6cm;
+  margin:0;
+}
+
+/*
+To get another page footer on the bibliography we need to use the page property 
+and set a unique page name for which we defined a @page rule above.
+*/
+.lastPage{
+  page: lastPage;
+}
+
+/*
+Around the headers H1 element we want to show a circle, this is done by applying border-radius 100%.
+Also the element needs to be centered on the page, for this we use position absolute and the transform
+property.
+*/
+.logo{
+  background-color:var(--circle-color);
+  border-radius:100%;
+  position:relative;
+  display:inline-block;
+  width:3cm;
+  height:3cm;
+  margin-right:1cm;
+}
+
+/*
+Around the circle itself there is another circle which has no background color but just a border.
+We again position this element and use the border-radius property. This time we just do not set a
+background color.
+*/
+.logo:after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translateX(-50%) translateY(-50%);
+  border:1mm solid var(--circle-color);
+  border-radius:100%;
+  display:inline-block;
+  width:3.5cm;
+  height:3.5cm;
+
+}
+
+/*
+The header on the cover page uses a different font family than all other H1 elements we have
+that's why we first overwrite the font. With the position and transform we move the element to the
+center of the circle.
+*/
+.logo h1{
+  font-family: 'Montserrat', sans-serif;
+  font-size:8pt;
+  color:var(--text-color);
+  position:relative;
+  left:50%;
+  top:50%;
+  transform:translateX(-50%) translateY(-50%);
+  text-align:center;
+  text-transform:uppercase;
+  z-index:2;
+  width:3cm;
+  margin:0;
+}
+
+/*
+Most <h1> header elements (except cover page) get a margin top of 1cm and the 
+text is transformed to uppercase.
+*/
+.chapterPage h1{
+  margin-top:1cm;
+  text-transform:uppercase;
+}
+
+/*
+On the timeline chapter page there is a separator between the two timeline rows. This is done
+with a HR HTML element and the below CSS where we just use a border top of 0.25mm in the main
+highlight color.
+*/
+hr.timelinedivider{
+  height:0;
+  border:0;
+  border-top:.25mm solid var(--highlight-color-one);
+  margin:10mm 0 10mm 0;
+}
+
+/*
+The timeline entries are wrapped in a div where we make use of flexbox.
+*/
+.timeline{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content:space-between;
+  margin-top:15mm;
+}
+
+/*
+Each timeline entry gets a width of 30% of the page and increases the counter "entries"
+by 1. This is the CSS counter which is reset in the body element of this CSS file.
+*/
+.timeline .entry{
+  width:30%;
+  position:relative;
+  counter-increment:entries;
+}
+
+/*
+The element with the icon class is used to display the number of the timeline entry and
+the arrow pointing to the next entry. The number is done in the :before pseudo element, where
+we draw a 12x12mm circle and center the number in bold and black.
+*/
+.icon:before{
+  position:relative;
+  z-index:1;
+  content: counter(entries);
+  display:inline-block;
+  border-radius:100%;
+  height:12mm;
+  width:12mm;
+  line-height:12mm;
+  margin-left:-16mm;
+  text-align:center;
+  color:black;
+  border:0.125cm solid var(--highlight-color-one);
+  font-weight:bold;
+  font-size:20pt;
+}
+
+/*
+The icon element itself is positioned above the timeline entries headline with a margin left
+of 16mm and a with of 100% (= the 30% of the entry element) minus the 16mm from the margin.
+As the number circle has a height of 12mm, the icon element itself does too.
+*/
+.icon{
+  position:relative;
+  margin-left:16mm;
+  width: calc(100% - 16mm);
+  height: 12mm;
+}
+
+/*
+The timeline headers (title and date) get the same font size and no matter how
+the text is written in the HTML, it should always appear uppercase.
+*/
+.timeline h2{
+  font-size:10pt;
+  text-transform:uppercase;
+}
+
+/*
+To get some distance to the numbering and arrows the H2 element gets a margin
+top of 10mm.
+*/
+.timeline h2{
+  margin-top:10mm;
+}
+
+/*
+The date which we put in an H3 element should have a normal font weight so
+we overwrite the default "bold".
+*/
+.timeline h3{
+  font-weight:normal;
+}
+
+/*
+To ensure images do not take too much space you could either take care that the
+editors select images in the proper sizing or define a container where you set
+a fixed height and hide anything which overflows.
+*/
+.imageContainer{
+  max-height:9cm;
+  overflow:hidden;
+}
+
+/*
+In the image container all images should have a max width of 100% of the wrapping
+element.
+*/
+.imageContainer img{
+  max-width:100%;
+}
+
+/*
+In two colums layouts where one colum is a image we also use a container to ensure
+a max size, in this case it is dependend on the max height instead of the width.
+*/
+.imageContainerColumns{
+  overflow:hidden;
+  max-height:180mm;
+}
+
+/*
+In the tow column image container the image should not exceed 100% of the containers
+height.
+*/
+.imageContainerColumns img{
+  max-height:100%;
+}
+
+/*
+All two and three column content is done via flexbox.
+*/
+.twoColumns,
+.threeColumns{
+  display:flex;
+  align-items:stretch;
+  justify-content:space-between;
+  margin:1cm 0 1cm 0;
+}
+
+/*
+In two column content each column gets a width of 48% so 
+we get 4% of space between them.
+*/
+.twoColumns > *{
+  width:48%;
+}
+
+/*
+In three column content each column gets a width of 30% so 
+between the columns we have 3.33% space.
+*/
+.threeColumns > *{
+  width:30%;
+}
+
+/*
+If both columns are text only we use this class and simply set
+a column gap of 1cm.
+*/
+.twoTextColumns{
+  margin:1cm 0 1cm 0;
+  column-count:2;
+  column-gap:1cm;
+}
+
+/*
+The table of contents elements (<dl>) and all highlighted text should 
+get the color defined in the var --highlight-color-one.
+*/
+dl,
+.highlight,
+.highlightLight{
+  color:var(--highlight-color-one);
+}
+
+/*
+Additionally the main highlight text should be bold and larger than the others.
+*/
+.highlight{
+  font-weight:bold;
+  font-size:14pt;
+}
+
+/*
+If a image container is followed by a highlight text there should be a gap of 1cm 
+between them.
+*/
+.imageContainer + .highlight{
+  margin-top:1cm;
+}
+
+/*
+Within the texts we use a lot of <h4> headings and we want them to look the same
+as the normal text, except their default bold style. So for that we set the text
+size to 10pt and margin to 0 so there is no gap between the <h4> and <p> elements.
+*/
+h4{
+  font-size:10pt;
+  margin:0;
+}
+
+/*
+As mentioned in the h4 class we do not want a gap between the <h4> and <p> elements.
+So the margin top is set to 0.
+*/
+p{
+  margin-top:0;
+}
+
+/*
+All footnote elements are getting the float "footnote" property to remove them
+from the normal page flow and add them to the footnote area. The rest ensures 
+the style of the footnote is the same as the normal text, just a smaller font
+size of 8pt.
+*/
+.footnote {
+  float: footnote;
+  margin-bottom:2mm;
+  color:var(--text-color);
+  font-family: 'Montserrat', sans-serif;
+  font-size:8pt;
+  font-weight:normal;
+  footnote-style-position:inside;
+}
+
+/*
+For the footer we use flexbox to align the items vertically.
+*/
+.footerStandard,
+.footerLast{
+  position:running(footer);
+  color:var(--highlight-color-one);
+  display:flex;
+  align-items:center;
+  font-size:8pt;
+  text-transform:uppercase;
+}
+
+/*
+The first link element (website link) in each footer should be bold.
+*/
+footer a:first-of-type{
+  font-weight:bold;
+}
+
+/*
+This is the style of the line in the footer, we give a fixed height of 0.5mm and
+a relative size of 70%, the background color is the content of the CSS var --highlight-color-one.
+*/
+footer hr{
+  margin:0 3% 0 3%;
+  height:.5mm;
+  background-color:var(--highlight-color-one);
+  border-top:0;
+  width:100%;
+  display:inline-block;
+}
+
+/*
+The only difference between the footer of the chapter pages and the bibliography 
+is that a different HTML element is used for the running position.
+*/
+.footerLast{
+  color:white;
+  position:running(footerLast);
+}
+
+.footerLast hr{
+  background-color:white;
+}
