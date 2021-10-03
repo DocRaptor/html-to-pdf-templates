@@ -40,6 +40,13 @@ Define all colors used in this template
   }
 }
 
+@page:right{
+  @bottom-left{
+    width:100%;
+  	content:element(footerRight);
+  }
+}
+
 
 /*
 The bibliography page has a different HTML element as footer content so instead of
@@ -746,6 +753,7 @@ size of 8pt.
 For the footer we use flexbox to align the items vertically.
 */
 .footerStandard,
+.footerStandardRight,
 .footerLast{
   position:running(footer);
   color:var(--highlight-color-one);
@@ -753,6 +761,10 @@ For the footer we use flexbox to align the items vertically.
   align-items:center;
   font-size:8pt;
   text-transform:uppercase;
+}
+
+.footerStandardRight{
+  position:running(footerRight);
 }
 
 /*
