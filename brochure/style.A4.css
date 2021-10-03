@@ -437,7 +437,7 @@ Around the headers H1 element we want to show a circle, this is done by applying
 Also the element needs to be centered on the page, for this we use position absolute and the transform
 property.
 */
-.lastPage .logo{
+.footerLast .logo{
   background-color:var(--circle-color);
   border-radius:100%;
   position:relative;
@@ -452,7 +452,7 @@ Around the circle itself there is another circle which has no background color b
 We again position this element and use the border-radius property. This time we just do not set a
 background color.
 */
-.lastPage .logo:after{
+.footerLast .logo:after{
   content:"";
   position:absolute;
   left:50%;
@@ -470,7 +470,7 @@ The header on the cover page uses a different font family than all other H1 elem
 that's why we first overwrite the font. With the position and transform we move the element to the
 center of the circle.
 */
-.lastPage .logo h1{
+.footerLast .logo h1{
   font-family: 'Montserrat', sans-serif;
   font-size:8pt;
   color:var(--text-color);
