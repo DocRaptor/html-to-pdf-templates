@@ -307,7 +307,38 @@ we draw a 12x12mm circle and center the number in bold and black.
   border:0.125cm solid white;
 }
 
+.textAndImagePage .shapeBlueTransparent{
+  position:absolute;
+  left:-2cm;
+  top:-2cm;
+  width: 0;
+  height: 0;
+  border-top: 22cm solid var(--highlight-color-one-transparent);
+  border-right: 66cm solid transparent;
+}
+
+.textAndImagePage .shapeBlue{
+  position:absolute;
+  left:-2cm;
+  top:-2cm;
+  width: 0;
+  height: 0;
+  border-top: 20cm solid var(--highlight-color-one);
+  border-right: 60cm solid transparent;
+}
+
+.textAndImagePage .shapeBlueLight{
+  position:absolute;
+  left:-2cm;
+  top:-2cm;
+  width: 0;
+  height: 0;
+  border-top: 19cm solid rgb(98, 212, 232);
+  border-right: 57cm solid transparent;
+}
+
 .textAndImagePage p{
+  position:absolute;
   color:white;
   font-size:18pt;
   line-height:1.5;
