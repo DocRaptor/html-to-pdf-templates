@@ -237,6 +237,26 @@ and set a unique page name for which we defined a @page rule above.
   page: lastPage;
 }
 
+.imageAndLogoPage .shapeBlue{
+  position:absolute;
+  left:-2cm;
+  top:-2cm;
+  width: 0;
+  height: 0;
+  border-top: 20cm solid var(--highlight-color-one);
+  border-right: 50cm solid transparent;
+}
+
+.imageAndLogoPage .shapeWhite{
+  position:absolute;
+  left:-2cm;
+  top:-2cm;
+  width: 0;
+  height: 0;
+  border-top: 16cm solid white;
+  border-right: 42cm solid transparent;
+}
+
 .imageAndLogoPage .image{
   position:absolute;
   height:95%;
