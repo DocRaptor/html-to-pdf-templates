@@ -283,6 +283,7 @@ and set a unique page name for which we defined a @page rule above.
 .imageAndTextPage .timeline{
   position:absolute;
   bottom:0;
+  width:100%;
 }
 
 .imageAndTextPage .timeline .entry{
@@ -290,11 +291,11 @@ and set a unique page name for which we defined a @page rule above.
 }
 
 .imageAndTextPage .timeline .entry:nth-child(2){
-  margin-top:1cm;
+  margin-top:2cm;
 }
 
 .imageAndTextPage .timeline .entry:nth-child(3){
-  margin-top:2cm;
+  margin-top:4cm;
 }
 
 /*
