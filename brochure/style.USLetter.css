@@ -1,0 +1,847 @@
+/* 
+Import the desired font from Google fonts. 
+*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+/* 
+Define all colors used in this template 
+*/
+:root{
+  --highlight-color-one: #1FC2DE;
+  --highlight-color-one-transparent: #1FC2DEB3;
+  --text-color: #303E48;
+  --table-row-separator-color:#CEC3BA;
+  --circle-color: rgba(255, 255, 255, .8);
+}
+
+@page{
+  /*
+  This CSS highlights how page sizes and margin boxes are set.
+  https://docraptor.com/documentation/article/1067959-size-dimensions-orientation
+  Within the page margin boxes content from running elements is used instead of a 
+  standard content string. The name which is passed in the element() function can
+  be found in the CSS code below in a position property and is defined there by 
+  the running() function.
+
+  On the bottom right page margin box we also add the current page number and 
+  in the @footnote rule we define the style of the footnote area.
+  */
+  size:USLetter;
+  margin:2cm 2cm 2.5cm 2cm;
+  
+  @top-left{
+  	content:element(header);
+  }
+  
+  @bottom-left{
+    width:100%;
+  	content:element(footer);
+  }
+}
+
+@page:right{
+  @bottom-left{
+    width:100%;
+  	content:element(footerRight);
+  }
+}
+
+
+/*
+The last page has a different HTML element as footer content so instead of
+the running element "footer" we add the running element "footerLast" here.
+*/
+@page lastPage{
+  background-image:url("https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1887&q=80");
+  background-size:cover;
+  margin:2cm 2cm 6cm 2cm;
+  
+  @top-left{
+    content:"";
+  }
+  
+  @bottom-right{
+    content:"";
+  }
+  
+  @bottom-left{
+    width:100%;
+  	content:element(footerLast);
+  }
+}
+
+@page:first{
+  /*
+  The first page gets a different style via the :first selector, as we want a full page
+  cover image we set the margin to 0 and add the image with a background-size "cover".
+
+  Also on the first page we do not want the footer with the company contact details, which
+  appears on all other pages, therefore we set the content to "" in the bottom left
+  page margin box.
+  */
+  margin:0;
+  background-image:url("https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1887&q=80");
+  background-size:cover;
+  
+  @top-left{
+    content:"";
+  }
+  
+  @bottom-right{
+    content:"";
+  }
+  
+  @bottom-left{
+    content:"";
+  }
+}
+
+/*
+For all pages which should not have a footer, we need to clear all the margin boxes.
+*/
+@page noFooterPage{
+  background:var(--highlight-color-one-transparent);
+  
+  @top-left{
+    content:"";
+  }
+  
+  @bottom-right{
+    content:"";
+  }
+  
+  @bottom-left{
+    content:"";
+  }
+}
+
+/* 
+The body itself has no margin or padding.
+Additionally the default font family, size and color for the document is defined
+here.
+
+Also we define the counter for the numbered elements with the property counter-reset.
+*/
+body{
+  margin:0;
+  padding:0;
+  color:var(--text-color);
+  font-family: 'Montserrat', sans-serif;
+  font-size:10pt;
+  counter-reset:entries;
+  counter-reset:entriesImageAndText;
+}
+
+/*
+The links in the document should not be highlighted by an different color and underline
+instead we use the color value inherit to get the current texts color.
+*/
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+/*
+Any HR HTML element should get the highlight color.
+*/
+hr{
+  height:0;
+  border:0;
+  border-top:.75mm solid var(--highlight-color-one);
+  margin:1cm 0 1cm 0;
+}
+
+/*
+The page header in our document uses the HTML HEADER element, we define a height 
+of 2cm and a border on the bottom of half a millimeter.
+As mentioned above in the comment for the @page the position property with the 
+value running(header) makes this HTML element float into the top left page margin
+box. This page margin box repeats on every page in case we would have a multi-page
+book.
+*/
+header{
+  position:running(header);
+  height:2cm;
+  border-bottom:.5mm solid var(--table-row-separator-color);
+}
+
+/*
+Anything after the cover, no footer and chapter elements should start on a new page so we do
+set a page break of always after these elements.
+*/
+.coverPage,
+.chapterPage,
+.noFooterPage{
+  page-break-before:always;
+}
+
+/*
+On the cover page, around the headers H1 element we want to show a circle, this is done 
+by applying border-radius 100%. Also the element needs to be centered on the page, for 
+this we use position absolute and the transform property.
+*/
+.coverPage{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translateX(-50%) translateY(-50%);
+  background-color:var(--circle-color);
+  border-radius:100%;
+  display:inline-block;
+  width:12cm;
+  height:12cm;
+}
+
+/*
+Around the circle itself there is another circle which has no background color but just a border.
+We again position this element and use the border-radius property. This time we just do not set a
+background color.
+*/
+.coverPage:after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translateX(-50%) translateY(-50%);
+  border:1mm solid var(--circle-color);
+  border-radius:100%;
+  display:inline-block;
+  width:13cm;
+  height:13cm;
+
+}
+
+/*
+The header on the cover page uses a different font family than all other H1 elements we have
+that's why we first overwrite the font. With the position and transform we move the element to the
+center of the circle.
+*/
+.coverPage h1{
+  font-family: 'Montserrat', sans-serif;
+  position:relative;
+  left:50%;
+  top:50%;
+  transform:translateX(-50%) translateY(-50%);
+  text-align:center;
+  text-transform:uppercase;
+  z-index:2;
+  width:6cm;
+  margin:0;
+}
+
+/*
+To get another page footer on the last page we need to use the page property 
+and set a unique page name for which we defined a @page rule above.
+*/
+.lastPage{
+  page: lastPage;
+}
+
+/*
+To get no page footer on certain pages we need to use the page property 
+and set a unique page name for which we defined a @page rule above.
+*/
+.noFooterPage{
+  page: noFooterPage;
+}
+
+/*
+The image + logo page uses two shapes as dividers behind the image
+and the logo. These are done with DIV elements which are absolute positioned
+and create the shape with a combination of border top & right.
+
+The first shape starts at the top of the page with a position of -2cm left & top.
+The borders of 20cm and 60cm and the transparent color define the divider which is
+shown on the image.
+*/
+.imageAndLogoPage .shapeBlue{
+  position:absolute;
+  left:-2cm;
+  top:-2cm;
+  width: 0;
+  height: 0;
+  border-top: 20cm solid var(--highlight-color-one);
+  border-right: 60cm solid transparent;
+}
+
+/*
+The second shape has white as shape color and the borders of 16cm and 48cm 
+are used to position it above the blue one.
+*/
+.imageAndLogoPage .shapeWhite{
+  position:absolute;
+  left:-2cm;
+  top:-2cm;
+  width: 0;
+  height: 0;
+  border-top: 16cm solid white;
+  border-right: 48cm solid transparent;
+}
+
+/*
+The image on the image + logo pages should be shown on the top of the page, but inside
+the page margin boxes.
+*/
+.imageAndLogoPage .image{
+  position:absolute;
+  height:95%;
+  overflow:hidden;
+}
+
+/*
+The image on the image + logo pages should max. have a width of 100% of the page.
+*/
+.imageAndLogoPage img{
+  max-width:100%;
+}
+
+/*
+The image on the image + text pages should be shown on the top of the page.
+we set the width to 100% + 4cm to also fill the page margins. To do so we also
+need to position the image -2cm from the left.
+*/
+.imageAndTextPage .image{
+  position:absolute;
+  left:-2cm;
+  top:-2cm;
+  width:calc(100% + 4cm);
+  height:70%;
+  overflow:hidden;
+}
+
+/*
+The image on the image + text pages should max. have a width of 100% of the page.
+*/
+.imageAndTextPage img{
+  max-width:100%;
+}
+
+/*
+The numbered elements on the image + text page need to be positioned 
+absolute on the bottom of the page.
+*/
+.imageAndTextPage .numberedElements{
+  position:absolute;
+  bottom:0;
+  width:100%;
+}
+
+/*
+For the image + text page we need to increment the counter entriesImageAndText
+so that the entries are numbered correctly.
+*/
+.imageAndTextPage .numberedElements .entry{
+  counter-increment:entriesImageAndText;
+}
+
+/*
+The second entry on the image + text page is getting a margin top of 2cm.
+With this and the next class we ensure that the text follows the shape of 
+the dividers.
+*/
+.imageAndTextPage .numberedElements .entry:nth-child(2){
+  margin-top:2cm;
+}
+
+/*
+The last entry on the image + text page is getting a margin top of 4cm.
+*/
+.imageAndTextPage .numberedElements .entry:nth-child(3){
+  margin-top:4cm;
+}
+
+/*
+The element with the icon class is used to display the number of the numberedElements entry and
+the arrow pointing to the next entry. The number is done in the :before pseudo element, where
+we draw a 12x12mm circle and center the number in bold and black.
+*/
+.imageAndTextPage .icon:before{
+  content: counter(entriesImageAndText);
+  border:0.125cm solid white;
+}
+
+/*
+The image + text page uses three shapes as dividers between the image
+and the text. These are done with DIV elements which are absolute positioned
+and create the shape with a combination of border bottom & right.
+
+The first shape starts at the top of the page with a position of -2cm left & 6cm top.
+The borders of 19cm and 57cm and the transparent color define the divider which is
+shown on the image.
+*/
+.imageAndTextPage .shapeBlueTransparent{
+  position:absolute;
+  left:-2cm;
+  top:6cm;
+  width: 0;
+  height: 0;
+  border-bottom: 19cm solid var(--highlight-color-one-transparent);
+  border-right: 57cm solid transparent;
+}
+
+/*
+The second shape has a darker blue as shape color and the borders of 20cm and 60cm 
+are used to position it above the transparent one.
+*/
+.imageAndTextPage .shapeBlue{
+  position:absolute;
+  left:-2cm;
+  top:8cm;
+  width: 0;
+  height: 0;
+  border-bottom: 20cm solid var(--highlight-color-one);
+  border-right: 60cm solid transparent;
+}
+
+/*
+The last shape is placed on top of the others to restore the original background color 
+of the page.
+*/
+.imageAndTextPage .shapeBlueLight{
+  position:absolute;
+  left:-2cm;
+  top:9cm;
+  width: 0;
+  height: 0;
+  border-bottom: 22cm solid rgb(98, 212, 232);
+  border-right: 66cm solid transparent;
+}
+
+/*
+The text + image page uses three shapes as dividers between the image
+and the text. These are done with DIV elements which are absolute positioned
+and create the shape with a combination of border top & right.
+
+The first shape starts at the top of the page with a position of -2cm left & top.
+The borders of 22cm and 66cm and the transparent color define the divider which is
+shown on the image.
+*/
+.textAndImagePage .shapeBlueTransparent{
+  position:absolute;
+  left:-2cm;
+  top:-2cm;
+  width: 0;
+  height: 0;
+  border-top: 22cm solid var(--highlight-color-one-transparent);
+  border-right: 66cm solid transparent;
+}
+
+/*
+The second shape has a darker blue as shape color and the borders of 20cm and 60cm 
+are used to position it above the transparent one.
+*/
+.textAndImagePage .shapeBlue{
+  position:absolute;
+  left:-2cm;
+  top:-2cm;
+  width: 0;
+  height: 0;
+  border-top: 20cm solid var(--highlight-color-one);
+  border-right: 60cm solid transparent;
+}
+
+/*
+The last shape is placed on top of the others to restore the original background color 
+of the page.
+*/
+.textAndImagePage .shapeBlueLight{
+  position:absolute;
+  left:-2cm;
+  top:-2cm;
+  width: 0;
+  height: 0;
+  border-top: 19cm solid rgb(98, 212, 232);
+  border-right: 57cm solid transparent;
+}
+
+/*
+The quote on the text + image page is wrapped in a P element and positioned
+on the top of the page.
+*/
+.textAndImagePage p{
+  position:absolute;
+  color:white;
+  font-size:18pt;
+  line-height:1.5;
+  font-weight:bold;
+}
+
+/*
+The image on the text + image pages should be shown on the bottom of the page.
+we set the width to 100% + 4cm to also fill the page margins. To do so we also
+need to position the image -2cm from the left.
+*/
+.textAndImagePage .image{
+  position:absolute;
+  left:-2cm;
+  bottom:-2.5cm;
+  width:calc(100% + 4cm);
+  height:70%;
+  overflow:hidden;
+}
+
+/*
+The image on the text + image pages should max. have a width of 100% of the page.
+*/
+.textAndImagePage img{
+  max-width:100%;
+}
+
+/*
+If a company logo is needed on a page without the footer, we add the circle by setting
+the border radius of the div to 100% and the background color to --circle-color.
+*/
+.noFooterPage .logo{
+  background-color:var(--circle-color);
+  border-radius:100%;
+  display:inline-block;
+  width:6cm;
+  height:6cm;
+  margin-right:1cm;
+  position:absolute;
+  bottom:-1cm;
+  left:1cm;
+}
+
+/*
+The header on the cover page uses a different font family than all other H1 elements we have
+that's why we first overwrite the font. With the position and transform we move the element to the
+center of the circle.
+*/
+.noFooterPage .logo h1{
+  font-family: 'Montserrat', sans-serif;
+  font-size:12pt;
+  color:var(--text-color);
+  position:relative;
+  left:50%;
+  top:50%;
+  transform:translateX(-50%) translateY(-50%);
+  text-align:center;
+  text-transform:uppercase;
+  z-index:2;
+  width:6cm;
+  margin:0;
+}
+
+/*
+Around the headers H1 element we want to show a circle, this is done by applying border-radius 100%.
+Also the element needs to be centered on the page, for this we use position absolute and the transform
+property.
+*/
+.footerLast .logo{
+  background-color:var(--circle-color);
+  border-radius:100%;
+  position:relative;
+  display:inline-block;
+  width:3cm;
+  height:3cm;
+  margin-right:1cm;
+}
+
+/*
+Around the circle itself there is another circle which has no background color but just a border.
+We again position this element and use the border-radius property. This time we just do not set a
+background color.
+*/
+.footerLast .logo:after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translateX(-50%) translateY(-50%);
+  border:1mm solid var(--circle-color);
+  border-radius:100%;
+  display:inline-block;
+  width:3.5cm;
+  height:3.5cm;
+}
+
+/*
+The header on the cover page uses a different font family than all other H1 elements we have
+that's why we first overwrite the font. With the position and transform we move the element to the
+center of the circle.
+*/
+.footerLast .logo h1{
+  font-family: 'Montserrat', sans-serif;
+  font-size:8pt;
+  color:var(--text-color);
+  position:relative;
+  left:50%;
+  top:50%;
+  transform:translateX(-50%) translateY(-50%);
+  text-align:center;
+  text-transform:uppercase;
+  z-index:2;
+  width:3cm;
+  margin:0;
+}
+
+/*
+Most <h1> header elements (except cover page) get a margin top of 1cm and the 
+text is transformed to uppercase.
+*/
+.chapterPage h1{
+  margin-top:1cm;
+  text-transform:uppercase;
+}
+
+/*
+The team members should be shown in three columns, we use flexbox for this.
+*/
+.team{
+  margin-top:2cm;
+  display:flex;
+  justify-content:space-between;
+}
+
+/*
+Each team member element has a width of 28% of the page.
+*/
+.team div{
+  width:28%;
+}
+
+/*
+The pictures of the team members should be shown as circle, for this we use the
+border-radius property. Also the image should not be wider than the team member
+column.
+*/
+.team div img{
+  max-width:100%;
+  border-radius:100%;
+}
+
+/*
+The team members name and job position get a font size of 10pt and the text
+is transformed to uppercase.
+*/
+.team h2,
+.team h3{
+  font-size:10pt;
+  text-transform:uppercase;
+  margin:0;
+}
+
+/*
+The job position should be shown in italic and have some space to the paragraph below.
+*/
+.team h3{
+  font-weight:normal;
+  font-style:italic;
+  margin-bottom:.5cm;
+}
+
+/*
+The name of the team member, needs to have some distance to the image so we set a margin
+top of 1cm.
+*/
+.team h2{
+  margin-top:1cm;
+}
+
+/*
+On the numberedElements chapter page there is a separator between the two numberedElements rows. 
+This is done with a HR HTML element and the below CSS where we just use a border top of 0.25mm 
+in the main highlight color.
+*/
+hr.numberedElementsdivider{
+  height:0;
+  border:0;
+  border-top:.25mm solid var(--highlight-color-one);
+  margin:10mm 0 10mm 0;
+}
+
+/*
+The numberedElements entries are wrapped in a div where we make use of flexbox.
+*/
+.numberedElements{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content:space-between;
+  margin-top:15mm;
+}
+
+/*
+Each numberedElements entry gets a width of 30% of the page and increases the counter "entries"
+by 1. This is the CSS counter which is reset in the body element of this CSS file.
+*/
+.numberedElements .entry{
+  width:30%;
+  position:relative;
+  counter-increment:entries;
+}
+
+/*
+The element with the icon class is used to display the number of the numberedElements entry and
+the arrow pointing to the next entry. The number is done in the :before pseudo element, where
+we draw a 12x12mm circle and center the number in bold and black.
+*/
+.icon:before{
+  position:relative;
+  z-index:1;
+  content: counter(entries);
+  display:inline-block;
+  border-radius:100%;
+  height:12mm;
+  width:12mm;
+  line-height:12mm;
+  margin-left:-16mm;
+  text-align:center;
+  color:black;
+  border:0.125cm solid var(--highlight-color-one);
+  font-weight:bold;
+  font-size:20pt;
+}
+
+/*
+The icon element itself is positioned above the numberedElements entries headline with a margin left
+of 16mm and a with of 100% (= the 30% of the entry element) minus the 16mm from the margin.
+As the number circle has a height of 12mm, the icon element itself does too.
+*/
+.icon{
+  position:relative;
+  margin-left:16mm;
+  width: calc(100% - 16mm);
+  height: 12mm;
+}
+
+/*
+The numberedElements headers (title and date) get the same font size and no matter how
+the text is written in the HTML, it should always appear uppercase.
+
+To get some distance to the numbering and arrows the H2 element gets a margin
+top of 10mm.
+*/
+.numberedElements h2{
+  font-size:10pt;
+  text-transform:uppercase;
+  margin-top:10mm;
+}
+
+/*
+All two column content is done via flexbox.
+*/
+.twoColumns{
+  display:flex;
+  align-items:stretch;
+  justify-content:space-between;
+  margin:1cm 0 1cm 0;
+}
+
+/*
+In two column content each column gets a width of 48% so 
+we get 4% of space between them.
+*/
+.twoColumns > *{
+  width:48%;
+}
+
+/*
+If both columns are text only we use this class and simply set
+a column gap of 1cm.
+*/
+.twoTextColumns{
+  margin:1cm 0 1cm 0;
+  column-count:2;
+  column-gap:1cm;
+}
+
+/*
+All highlighted text should get the color defined in the var --highlight-color-one.
+*/
+.highlight,
+.highlightLight{
+  color:var(--highlight-color-one);
+}
+
+/*
+Additionally the main highlight text should be bold and larger than the others.
+*/
+.highlight{
+  font-weight:bold;
+  font-size:14pt;
+}
+
+/*
+Within the texts we use a lot of <h4> headings and we want them to look the same
+as the normal text, except their default bold style. So for that we set the text
+size to 10pt and margin to 0 so there is no gap between the <h4> and <p> elements.
+*/
+h4{
+  font-size:10pt;
+  margin:0;
+}
+
+/*
+As mentioned in the h4 class we do not want a gap between the <h4> and <p> elements.
+So the margin top is set to 0.
+*/
+p{
+  margin-top:0;
+}
+
+/*
+For the footer we use flexbox to align the items vertically.
+*/
+.footerStandard,
+.footerStandardRight,
+.footerLast{
+  position:running(footer);
+  color:var(--highlight-color-one);
+  display:flex;
+  align-items:center;
+  font-size:8pt;
+  text-transform:uppercase;
+}
+
+/*
+For the footer on right pages we need to use a different running element
+*/
+.footerStandardRight{
+  position:running(footerRight);
+}
+
+/*
+The first link element (website link) in each footer should be bold.
+*/
+.footerStandard a:first-of-type,
+.footerRight a:first-of-type{
+  font-weight:bold;
+}
+
+/*
+The last link element (website link) in each right page footer should be bold.
+*/
+.footerStandardRight a:last-of-type{
+  font-weight:bold;
+}
+
+/*
+This is the style of the line in the footer, we give a fixed height of 0.5mm and
+a relative size of 70%, the background color is the content of the CSS var --highlight-color-one.
+*/
+footer hr{
+  margin:0 3% 0 3%;
+  height:.5mm;
+  background-color:var(--highlight-color-one);
+  border-top:0;
+  width:100%;
+  display:inline-block;
+}
+
+/*
+The only difference between the footer of the chapter pages and the bibliography 
+is that a different HTML element is used for the running position.
+*/
+.footerLast{
+  color:white;
+  position:running(footerLast);
+}
+
+/*
+This is the style of the line in the last pages footer, we get the properties inherited from the
+standard footer and overwrite the background color to white.
+*/
+.footerLast hr{
+  background-color:white;
+}
