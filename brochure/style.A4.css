@@ -28,7 +28,6 @@ Define all colors used in this template
   */
   size:A4;
   margin:2cm 2cm 2.5cm 2cm;
-  counter-reset: footnote;
   
   @top-left{
   	content:element(header);
@@ -278,26 +277,26 @@ and set a unique page name for which we defined a @page rule above.
   max-width:100%;
 }
 
-.imageAndTextPage .timeline{
+.imageAndTextPage .numberedElements{
   position:absolute;
   bottom:0;
   width:100%;
 }
 
-.imageAndTextPage .timeline .entry{
+.imageAndTextPage .numberedElements .entry{
   counter-increment:entriesImageAndText;
 }
 
-.imageAndTextPage .timeline .entry:nth-child(2){
+.imageAndTextPage .numberedElements .entry:nth-child(2){
   margin-top:2cm;
 }
 
-.imageAndTextPage .timeline .entry:nth-child(3){
+.imageAndTextPage .numberedElements .entry:nth-child(3){
   margin-top:4cm;
 }
 
 /*
-The element with the icon class is used to display the number of the timeline entry and
+The element with the icon class is used to display the number of the numberedElements entry and
 the arrow pointing to the next entry. The number is done in the :before pseudo element, where
 we draw a 12x12mm circle and center the number in bold and black.
 */
@@ -518,11 +517,11 @@ text is transformed to uppercase.
 }
 
 /*
-On the timeline chapter page there is a separator between the two timeline rows. This is done
+On the numberedElements chapter page there is a separator between the two numberedElements rows. This is done
 with a HR HTML element and the below CSS where we just use a border top of 0.25mm in the main
 highlight color.
 */
-hr.timelinedivider{
+hr.numberedElementsdivider{
   height:0;
   border:0;
   border-top:.25mm solid var(--highlight-color-one);
@@ -530,9 +529,9 @@ hr.timelinedivider{
 }
 
 /*
-The timeline entries are wrapped in a div where we make use of flexbox.
+The numberedElements entries are wrapped in a div where we make use of flexbox.
 */
-.timeline{
+.numberedElements{
   display:flex;
   flex-wrap: wrap;
   justify-content:space-between;
@@ -540,17 +539,17 @@ The timeline entries are wrapped in a div where we make use of flexbox.
 }
 
 /*
-Each timeline entry gets a width of 30% of the page and increases the counter "entries"
+Each numberedElements entry gets a width of 30% of the page and increases the counter "entries"
 by 1. This is the CSS counter which is reset in the body element of this CSS file.
 */
-.timeline .entry{
+.numberedElements .entry{
   width:30%;
   position:relative;
   counter-increment:entries;
 }
 
 /*
-The element with the icon class is used to display the number of the timeline entry and
+The element with the icon class is used to display the number of the numberedElements entry and
 the arrow pointing to the next entry. The number is done in the :before pseudo element, where
 we draw a 12x12mm circle and center the number in bold and black.
 */
@@ -572,7 +571,7 @@ we draw a 12x12mm circle and center the number in bold and black.
 }
 
 /*
-The icon element itself is positioned above the timeline entries headline with a margin left
+The icon element itself is positioned above the numberedElements entries headline with a margin left
 of 16mm and a with of 100% (= the 30% of the entry element) minus the 16mm from the margin.
 As the number circle has a height of 12mm, the icon element itself does too.
 */
@@ -584,10 +583,10 @@ As the number circle has a height of 12mm, the icon element itself does too.
 }
 
 /*
-The timeline headers (title and date) get the same font size and no matter how
+The numberedElements headers (title and date) get the same font size and no matter how
 the text is written in the HTML, it should always appear uppercase.
 */
-.timeline h2{
+.numberedElements h2{
   font-size:10pt;
   text-transform:uppercase;
 }
@@ -596,7 +595,7 @@ the text is written in the HTML, it should always appear uppercase.
 To get some distance to the numbering and arrows the H2 element gets a margin
 top of 10mm.
 */
-.timeline h2{
+.numberedElements h2{
   margin-top:10mm;
 }
 

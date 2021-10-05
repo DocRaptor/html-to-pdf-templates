@@ -1,7 +1,14 @@
-<!-- The header of the content pages is only a line so we have no content here but add the line with our CSS. -->
+<!-- 
+  The header of the content pages is only a line so we have no 
+  content here but add the line with our CSS. 
+-->
 <header>
 </header>
-<!-- The footer for all content pages contains the link to the website and a line next to it. -->
+
+<!-- 
+  The footer for all left content pages contains the link to the website, 
+  email, phone number and a line next to it. 
+-->
 <footer class="footerStandard">
     <a href="https://companywebsite.com">
       companywebsite.com
@@ -16,7 +23,10 @@
     </span>
     <hr />
 </footer>
-<!-- The footer for all content pages contains the link to the website and a line next to it. -->
+<!-- 
+  The footer for all right content pages contains the link to the website, 
+  email, phone number and a line next to it. 
+-->
 <footer class="footerStandardRight">
     <hr />
     <span>
@@ -32,8 +42,8 @@
     </a>
 </footer>
 <!-- 
-    The footer for the bibliography contains more information then the footer pages of the standard pages,
-    it contains the website, email and phone number.
+  The footer for the last page contains more information then the footer pages of the standard pages,
+  it contains the website, email, phone number and additionally the logo of the company.
 -->
 <footer class="footerLast">
     <div class="logo">
@@ -56,17 +66,18 @@
 </footer>
 
 <!--
-The HEADER element functions as cover page, showing an image (via CSS) and the 
-Logo + Restaurant Name.
+  This div element functions as cover page, showing an image (via CSS) and the 
+  Logo + Company Name.
 -->
 <div class="coverPage">
   <h1>Logo &amp; Company Name</h1>
 </div>
 
 <!--
-    Each chapter of the book is wrapped by a <div> with the .chapterPage class.
-    Each chapter has a title <h1> element a line below and then some highlighted text.
-    In this chapter we also have light highlighted text (blue but not bold) and a two column text.
+    Each chapter of the brochure is wrapped by a <div> with the .chapterPage class.
+    Each chapter has a title <h1> element and then some highlighted text.
+    In this chapter we also have light highlighted text (blue but not bold) 
+    and a two column text.
 -->
 <div class="chapterPage">
     <h1>Our Company</h1>
@@ -93,24 +104,28 @@ Logo + Restaurant Name.
     </div>
 </div>
 
+<!--
+  The next page has no footer, contains an image on top and numbered text entries on the bottom.
+-->
 <div class="noFooterPage imageAndTextPage">
-  
   <div class="image">
     <img src="https://images.unsplash.com/photo-1603195827187-459ab02554a0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1887&q=80" />    
   </div>
+  <!-- These shape elements are used as a divider between image and text information. -->
   <div class="shapeBlue">
   </div>
   <div class="shapeBlueTransparent">
   </div>
   <div class="shapeBlueLight">
   </div>
-  <div class="timeline">
-    <!-- One timeline entry -->
+  <div class="numberedElements">
+    <!-- One numberedElements entry -->
     <div class="entry">
+      <!-- The icon is used for the numbering of the entry -->
       <div class="icon"></div>
       <!-- Headline of the entry -->
       <h2>Lorem Ipsum Dolor</h2>
-      <!-- Description of the timeline entry -->
+      <!-- Description of the numberedElements entry -->
       <p>Aliquam erat volutpat. Donec vel ultricies quam, ac laoreet purus. Fusce faucibus imperdiet ultrices. Fusce dictum lacus augue, at volutpat ante ultricies quis. Nam vitae justo non ligula sodales tempus.</p>
     </div>
     <div class="entry">
@@ -126,6 +141,10 @@ Logo + Restaurant Name.
   </div>
 </div>
 
+<!--
+  Again a page with no footer, an image and the company logo. Also here shape elements are used to
+  create the three colored background of the page.
+-->
 <div class="noFooterPage imageAndLogoPage">
   <div class="shapeBlue">
   </div>
@@ -140,11 +159,8 @@ Logo + Restaurant Name.
 </div>
 
 <!-- 
-    The next chapter page has a highlighted paragraph, a two column text and an image below.
-    Further this chapter spreads over multiple pages and continues with a forced page break.
-    Then we get a page with a image on the top, followed by a two column text and a highlighted 
-    sentence.
-    Another page break and again a highlighted text, two column text and a image.
+    The next chapter page has a highlighted paragraph, a light highlighted text and three columns 
+    mentioning the team members.
 -->
 <div class="chapterPage">
     <h1>Our Team</h1>
@@ -191,6 +207,10 @@ Logo + Restaurant Name.
     </div>
 </div>
 
+<!-- 
+  A page without the standard footer, a quote on top, image on the bottom and blue shapes to divide
+  image and text.
+-->
 <div class="noFooterPage textAndImagePage">
   <div class="image">
     <img src="https://images.unsplash.com/photo-1603195827187-459ab02554a0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1887&q=80" />    
@@ -206,19 +226,22 @@ Logo + Restaurant Name.
   </p>
 </div>
 
+<!--
+  The last chapter page shows all services of the company in 2 rows and 3 columns.
+-->
 <div class="chapterPage">
     <h1>Our Services</h1>
     <p class="highlight">
         Aenean convallis lorem diam, ut imperdiet lectus ornare eget. Vestibulum consequat aliquam felis, sed porttitor sapien porta et. Mauris vitae condimentum ipsum, sit amet euismod elit. Ut quis egestas libero. Duis vitae lacus dui.
     </p>
-    <!-- The wrapper element for the timeline -->
-  <div class="timeline">
-    <!-- One timeline entry -->
+    <!-- The wrapper element for the numberedElements -->
+  <div class="numberedElements">
+    <!-- One numberedElements entry -->
     <div class="entry">
       <div class="icon"></div>
       <!-- Headline of the entry -->
       <h2>Lorem Ipsum Dolor</h2>
-      <!-- Description of the timeline entry -->
+      <!-- Description of the numberedElements entry -->
       <p>Aliquam erat volutpat. Donec vel ultricies quam, ac laoreet purus. Fusce faucibus imperdiet ultrices. Fusce dictum lacus augue, at volutpat ante ultricies quis. Nam vitae justo non ligula sodales tempus.</p>
     </div>
     <div class="entry">
@@ -232,8 +255,8 @@ Logo + Restaurant Name.
       <p>Aliquam erat volutpat. Donec vel ultricies quam, ac laoreet purus. Fusce faucibus imperdiet ultrices. Fusce dictum lacus augue, at volutpat ante ultricies quis. Nam vitae justo non ligula sodales tempus.</p>
     </div>
   </div>
-  <hr class="timelinedivider" />
-  <div class="timeline">
+  <hr class="numberedElementsdivider" />
+  <div class="numberedElements">
     <div class="entry">
       <div class="icon"></div>
       <h2>Lorem Ipsum Dolor</h2>
@@ -251,6 +274,7 @@ Logo + Restaurant Name.
     </div>
   </div>
 </div>
+
 <!--
     The last page brochure contains a background image and a footer with the company logo and details.
 -->
