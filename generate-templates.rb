@@ -10,7 +10,7 @@ directories.each do |directory|
   a4_template = <<~HEREDOC.chomp
     <style>
     #{File.read("#{directory}/style.A4.css")}
-    </stle>
+    </style>
     #{File.read("#{directory}/#{template}.html")}
   HEREDOC
   File.write("#{output_dir}/#{template}.A4.html", a4_template)
@@ -19,7 +19,7 @@ directories.each do |directory|
   us_letter_template = <<~HEREDOC.chomp
     <style>
     #{File.read("#{directory}/style.USLetter.css")}
-    </stle>
+    </style>
     #{File.read("#{directory}/#{template}.html")}
   HEREDOC
   File.write("#{output_dir}/#{template}.USLetter.html", us_letter_template)
