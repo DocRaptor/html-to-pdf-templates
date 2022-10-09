@@ -1,0 +1,13 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    fileutils (1.6.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  fileutils (~> 1.6)
+
+BUNDLED WITH
+   2.1.2
