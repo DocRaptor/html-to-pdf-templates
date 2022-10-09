@@ -1,0 +1,8 @@
+<!-- <style type="text/css">
+{% render "invoice/style.A4.css" %}
+</style>
+{% render "invoice/invoice.html" %} -->
+{%- for post in collections.all -%}
+  <li><a href="{{ post.url }}">{{ post.url }}</a></li>
+{%- endfor -%}
+</ul>
