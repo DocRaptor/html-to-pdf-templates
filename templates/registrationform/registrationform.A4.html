@@ -1,0 +1,209 @@
+<style>
+    /* 
+    Import the desired font from Google fonts. 
+    */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&display=swap');
+    
+    /* 
+    Define all colors used in this template 
+    */
+    :root{
+      --highlight-color-one: #00bed8;
+      --text-color: #414142;
+      --text-color-light: white;
+      --input-line-color: #bcbec0;
+    }
+    
+    @page{
+      /*
+      This CSS highlights how page sizes and margin boxes are set.
+      https://docraptor.com/documentation/article/1067959-size-dimensions-orientation
+    
+      Within the page margin boxes content from running elements is used instead of a 
+      standard content string. The name which is passed in the element() function can
+      be found in the CSS code below in a position property and is defined there by 
+      the running() function.
+      */
+      size:A4;
+      margin:6.8cm 11.5mm 11.5mm 11.5mm;
+      
+      @top-left-corner{
+          content:element(header);
+      }
+    }
+    
+    /* 
+    The body itself has no margin or padding.
+    Additionally the default font family, size and color for the document is defined
+    here.
+    */
+    body{
+      margin:0;
+      padding:0;
+      color:var(--text-color);
+      font-family: 'Montserrat', sans-serif;
+      font-size:10pt;
+    }
+    
+    /*
+    The links in the document should not be highlighted by an different color and underline
+    instead we use the color value inherit to get the current texts color.
+    */
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+    
+    /*
+    The page header in our document uses the HTML HEADER element, we define a height 
+    of 2cm and a border on the bottom of half a millimeter.
+    
+    As mentioned above in the comment for the @page the position property with the 
+    value running(header) makes this HTML element float into the top left page margin
+    box. This page margin box repeats on every page in case we would have a multi-page
+    proposal.
+    */
+    header{
+      position:running(header);
+      background-image:url(https://azettl.net/demo_PDF/header_background.png);
+      background-position:bottom center;
+      background-size:contain;
+      background-repeat:no-repeat;
+      width:210mm;
+      height:100%;
+    }
+    
+    header img{
+      width: 40mm;
+      margin:11.5mm;
+    }
+    
+    label.upper{
+        text-transform: uppercase;
+        font-weight: bold;
+        display: block;
+    }
+    
+    label.w30{
+      width:4cm;
+      display:inline-block;
+    }
+
+    input[type="text"]{
+        width:100%;
+        border:none;
+        border-bottom:.25mm solid var(--input-line-color);
+    }
+
+    input[type="text"].w70,
+    .w70{
+        width:77%;
+    }
+
+    input[type="radio"]{
+        border-color:var(--input-line-color);
+    }
+    
+    .row{
+      margin-bottom:5mm;
+    }
+    
+    .flex{
+      display:flex;
+      justify-content:space-between;
+    }
+    
+    h1{
+      background-color:var(--highlight-color-one);
+      color:var(--text-color-light);
+      text-transform: uppercase;
+      text-align:center;
+    }
+</style>
+<!-- The empty header element is used for the border on top of all pages, except the cover page. -->
+<header>
+    <img src="https://azettl.net/demo_PDF/logo.png" alt="Company Logo" />
+</header>
+
+<form>
+    <p>
+        Dear sir,<br/>I/We are applying to register with all your company name. My/our detailed information are
+    </p>
+    
+    <div class="row">
+      <label class="upper">Account Holder's Name</label>
+      <input type="text" value="" />
+      <input type="text" value="" />
+      <input type="text" value="" />
+    </div>
+
+    <center class="row">
+        <label class="upper">Membership Type</label>
+        <input type="radio" name="type" value="Regular" /> Regular
+        <input type="radio" name="type" value="Exclusive" /> Exclusive
+        <input type="radio" name="type" value="VIP" /> VIP
+    </center>
+
+    <h1>Personal Information</h1>
+
+    <div class="row flex">
+        <span>
+          <label class="w30">Father's Name</label>:
+        </span>
+        <input class="w70" type="text" value="" />
+    </div>
+
+    <div class="row flex">
+        <span>
+          <label class="w30">Mother's Name</label>:
+        </span>
+        <input class="w70" type="text" value="" />
+    </div>
+
+    <div class="row flex">
+        <span>
+          <label class="w30">Gender</label>:
+        </span>
+        <span class="w70">
+          <input type="radio" name="type" value="Male" /> Male
+          <input type="radio" name="type" value="Female" /> Female
+          <input type="radio" name="type" value="N/A" /> N/A
+        </span>
+    </div>
+
+    <h1>Members Copy</h1>
+
+    <div class="row flex">
+        <span>
+          <label class="w30">Name</label>:
+        </span>
+        <input class="w70" type="text" value="" />
+    </div>
+
+    <div class="row flex">
+        <span>
+          <label class="w30">Father's Name</label>:
+        </span>
+        <input class="w70" type="text" value="" />
+    </div>
+
+    <div class="row flex">
+        <span>
+          <label class="w30">Gender</label>:
+        </span>
+        <span class="w70">
+          <input type="radio" name="type" value="Male" /> Male
+          <input type="radio" name="type" value="Female" /> Female
+          <input type="radio" name="type" value="N/A" /> N/A
+        </span>
+    </div>
+
+    <div class="row flex">
+        <span>
+          <label class="w30">Address</label>:
+        </span>
+        <input class="w70" type="text" value="" />
+    </div>
+</form>
+    
