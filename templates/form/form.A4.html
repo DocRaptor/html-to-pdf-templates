@@ -1,18 +1,30 @@
 <style>
+/*
+With this CSS property you could define whether you want a HTML form field to be
+used as input in the PDF or not.
+
+https://docraptor.com/documentation/article/7321187-forms
+*/
+input, select{
+  -prince-pdf-form: enable;
+}
+
 /* 
 Import the desired font from Google fonts. 
 */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 
 /* 
-Define all colors used in this template 
+Define colors and sizing elements used in this template
 */
 :root{
   --font-color: black;
-  --highlight-color: #60D0E4;
+  --highlight-color: #00a5ce;
+  --secondary-color: #868f95;
   --header-bg-color: #B8E6F1;
   --footer-bg-color: #BFC0C3;
   --table-img-bg-color: #BFC0C3;
+  --gap-size: 15px;
 }
 
 @page{
@@ -29,12 +41,16 @@ Define all colors used in this template
   margin:4cm 0 3cm 0;
 
   @top-left{
-  	content:element(header);
+    content:element(header);
   }
 
   @bottom-left{
-  	content:element(footer);
+    content:element(footer);
   }
+}
+
+* {
+  box-sizing: border-box;
 }
 
 /* 
@@ -46,13 +62,13 @@ body{
   margin:0;
   padding:1cm 2cm;
   color:var(--font-color);
-  font-family: 'Montserrat', sans-serif;
+  font-family:'Montserrat', sans-serif;
   font-size:10pt;
 }
 
 /*
 The links in the document should not be highlighted by an different color and underline
-instead we use the color value inherit to get the current texts color.
+instead we use the color value inherit to get the current text's color.
 */
 a{
   color:inherit;
@@ -64,7 +80,7 @@ For the dividers in the document we use an HR element with a margin top and bott
 of 1cm, no height and only a border top of one millimeter.
 */
 hr{
-  margin:1cm 0;
+  margin: 0.8cm 0;
   height:0;
   border:0;
   border-top:1mm solid var(--highlight-color);
@@ -72,7 +88,7 @@ hr{
 
 /*
 The page header in our document uses the HTML HEADER element, we define a height 
-of 9cm matching the margin top of the page (see @page rule) and a padding left
+of 4cm matching the margin top of the page (see @page rule) and a padding left
 and right of 2cm. We did not give the page itself a margin of 2cm to ensure that
 the background color goes to the edges of the document.
 
@@ -94,6 +110,8 @@ with the justify-content property.
 */
 header .headerSection{
   display:flex;
+  height:4cm;
+  align-items: center;
   justify-content:space-between;
 }
 
@@ -173,67 +191,79 @@ header h2{
   font-size:120%;
 }
 
-/*
-The text color for labels gets set to the highlight color.
-*/
-main label{
-  font-weight:bold;
-  color:var(--highlight-color);
-  margin-bottom: .25cm;
-}
-
-main .w100{
-  display:block;
-}
-
-main .w60{
-  display:inline-block;
-  width:65%;
-}
-
-main .w50{
-  display:inline-block;
-  width:47.5%;
-}
-
-main .w30{
-  display:inline-block;
-  width:30%;
-}
-
-main .labelLine{
+.formLine {
   display: flex;
-  justify-content: space-between;
-}
-
-main .formLine{
-  display: flex;
-  justify-content: space-between;
+  align-items: flex-start;
+  margin-left: calc(-1 * var(--gap-size));
   margin-bottom: .5cm;
 }
 
-main .lineSubmit{
+.formLineWrap {
+  flex-wrap: wrap;
+}
+
+.formLine > * {
+  padding-left: var(--gap-size);
+  box-sizing: border-box;
+}
+
+.lineSubmit {
   text-align: center;
 }
 
-/*
-With this CSS property you could define whether you want a HTML form field to be 
-used as input in the PDF or not. It's enabled by default and mentioned here only
-for demo purpose.
-
-https://www.princexml.com/forum/topic/4644/pdf-forms
-*/
-main input, main select{
-  prince-pdf-form: enable;
-  padding:.125cm;
-  border:1px solid var(--footer-bg-color);
+label{
+  font-weight:bold;
+  color:var(--highlight-color);
 }
 
-main input[type="submit"]{
+label + input[type="text"], label + select {
+  margin-top: 2px;
+}
+
+label.sublabel {
+  font-size: 0.85em;
+  text-transform: uppercase;
+  color: var(--secondary-color);
+  padding-bottom: 0.25em;
+}
+
+.w100{
+  width: 100%;
+}
+
+.w66{
+  width:66%;
+}
+
+.w50{
+  width:50%;
+}
+
+.w33{
+  width:33%;
+}
+
+input[type="text"] {
+  width: 100%;
+  height: 25px;
+}
+
+select {
+  width: 100%;
+  height: 25px;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  margin-right: 4px;
+}
+
+input[type="submit"] {
   background-color: var(--highlight-color);
   color:white;
   font-weight: bold;
   border:none;
+  padding:5px;
 }
 
 /*
@@ -255,7 +285,6 @@ aside p{
   margin:0;
   column-count:2;
 }
-
 
 /*
 The page footer in our document uses the HTML FOOTER element, we define a height 
@@ -292,7 +321,7 @@ footer a:first-child{
 }
 
 </style>
-<!-- The header element will appear on the top of each page of this packing slip document. -->
+<!-- The header element will appear on the top of each page of this form document. -->
 <header>
   <div class="headerSection">
     <!-- As a logo we take an SVG element and add the name in an standard H1 element behind it. -->
@@ -302,7 +331,6 @@ footer a:first-child{
       </svg>
       <h1>Logo &amp; Name</h1>
     </div>
-    <!-- Details about the order are on the right top side of each page. -->
     <div>
       <h2>Job Application</h2>
       <p>
@@ -315,7 +343,6 @@ footer a:first-child{
   </div>
 </header>
 
-<!-- The footer contains the company's website and address. To align the address details we will use flexbox in the CSS style. -->
 <footer>
     <a href="https://companywebsite.com">
       companywebsite.com
@@ -331,63 +358,121 @@ footer a:first-child{
     </span>
 </footer>
 
-<!-- In the main section the table for the separate items is added. Also the notes like gift wrapping are included in the MAIN section. -->
 <main>
-  <form name="application">
+  <form name="application" action="https://en7spkvxc7gii.x.pipedream.net" method="POST">
     
-    <label class="w100">Full Name</label>
+    <label class="w100 sublabel">Name</label>
     <div class="formLine">
-      <!-- Instead of prefilling the value attribute, using the placeholder would be better but it is not support by Prince yet. -->
-      <input class="w30" type="text" value="First" name="FirstName" />
-      <input class="w30" type="text" value="Middle" name="MiddleName" />
-      <input class="w30" type="text" value="Last" name="LastName" />
-    </div>
-    
-    <label class="w100">Birth Date</label>
-    <div class="formLine">
-      <input class="w30" type="text" value="Month" name="BirthMonth" />
-      <input class="w30" type="text" value="Day" name="BirthDay" />
-      <input class="w30" type="text" value="Year" name="BirthYear" />
-    </div>
-    
-    <label class="w100">Current Address</label>
-    <div class="formLine">
-      <input class="w60" type="text" value="Street" name="AddressStreet" />
-      <input class="w30" type="text" value="City" name="AddressCity" />
-    </div>
-    <div class="formLine">
-      <input class="w60" type="text" value="State/Province" name="AddressState" />
-      <input class="w30" type="text" value="Zip Code" name="AddressZipCode" />
+      <div class="w33">
+        <label>First Name</label>
+        <input type="text" name="FirstName" />
+      </div>
+      <div class="w33">
+        <label>Middle Name</label>
+        <input type="text" name="MiddleName" />
+      </div>
+      <div class="w33">
+        <label>Last Name</label>
+        <input type="text" name="LastName" />
+      </div>
     </div>
     
-    <div class="labelLine">
-      <label class="w60">Email</label>
-      <label class="w30">Phone</label>
+    <label class="w100 sublabel">Address</label>
+    <div class="formLine">
+      <div class="w66">
+        <label>Street</label>
+        <input type="text" name="AddressStreet" />
+      </div>
+      <div class="w33">
+        <label>City Name</label>
+        <input type="text" name="AddressCity" />
+      </div>
     </div>
     <div class="formLine">
-      <input class="w60" type="text" value="example@example.com" name="Email" />
-      <input class="w30" type="text" value="(000) 000-0000" name="Phone" />
+      <div class="w66">
+        <label>State/Province</label>
+        <input type="text" name="AddressState" />
+      </div>
+      <div class="w33">
+        <label>Zip Code</label>
+        <input type="text" name="AddressZipCode" />
+      </div>
     </div>
-    
+
+    <div class="formLine">
+      <div class="w66">
+        <label>Email</label>
+        <input type="text" name="AddressEmail" />
+      </div>
+      <div class="w33">
+        <label>Phone</label>
+        <input type="text" name="AddressPhone" />
+      </div>
+    </div>
+
     <hr />
-    
-    <div class="labelLine">
-      <label class="w50">Position applying to:</label>
-      <label class="w50">How did you hear about us?</label>
-    </div>
+
     <div class="formLine">
-      <select class="w50" name="position">
-        <option value="">Please Select</option>
-        <option value="CTO">CTO</option>
-        <option value="CFO" >CFO</option>
-        <option value="CMO">CMO</option>
-      </select>
-      <select class="w50" name="hearaboutus">
-        <option value="">Please Select</option>
-        <option value="radio">Radio</option>
-        <option value="linkedin" >LinkedIn</option>
-        <option value="facebook">Facebook</option>
-      </select>
+      <div class="w50">
+        <label>Experience Level</label>
+        <select name="Experience">
+          <option value="">Please Select...</option>
+          <option value="<1 Year">&lt; 1 Year</option>
+          <option value="1-2 Years">1-2 Years</option>
+          <option value="2-5 Years">2-5 Years</option>
+          <option value="5+ Years">5+ Years</option>
+        </select>
+      </div>
+      <div class="w50">
+        <label>Required Salary</label>
+        <select name="Salary">
+          <option value="">Please Select...</option>
+          <option value="$40,000">$40,000</option>
+          <option value="$60,000">$60,000</option>
+          <option value="$80,000">$80,000</option>
+          <option value="$100,000">$100,000</option>
+        </select>
+      </div>
+    </div>
+    <hr />
+
+    <div class="formLine">
+      <div class="formLine formLineWrap w50">
+        <label class="sublabel w100">Position Applying To</label>
+        <div class="w50">
+          <input type="radio" name="Position[Intern]"><label>Intern</label>
+        </div>
+        <div class="w50">
+          <input type="radio" name="Position[ProductLead]"><label>Product Lead</label>
+        </div>
+        <div class="w50">
+          <input type="radio" name="Position[SalesManager]"><label>Sales Manager</label>
+        </div>
+        <div class="w50">
+          <input type="radio" name="Position[Developer]"><label>Developer</label>
+        </div>
+      </div>
+      <div class="formLine formLineWrap w50">
+        <label class="sublabel w100">How did you hear about us?</label>
+        <div class="w50">
+          <input type="checkbox" name="HearAboutUs[LinkedIn]"><label>LinkedIn</label>
+        </div>
+        <div class="w50">
+          <input type="checkbox" name="HearAboutUs[Website]"><label>Website</label>
+        </div>
+        <div class="w50">
+          <input type="checkbox" name="HearAboutUs[Event]"><label>Event</label>
+        </div>
+        <div class="w50">
+          <input type="checkbox" name="HearAboutUs[FamilyFriend]"><label>Family/Friend</label>
+        </div>
+        <div class="w50">
+          <input type="checkbox" name="HearAboutUs[SocialMedia]"><label>Social Media</label>
+        </div>
+        <div class="w50">
+          <input type="checkbox" name="HearAboutUs[Other]"><label>Other</label>
+        </div>
+      </div>
     </div>
 
     <div class="lineSubmit">
@@ -395,9 +480,8 @@ footer a:first-child{
     </div>
   </form>
 </main>
-<!-- Within the aside tag we will put the terms and conditions which shall be shown below the estimate table. -->
+<!-- Within the aside tag we will put the terms and conditions which will be floated to the bottom page. -->
 <aside>
-  <!-- Before the terms and conditions we will add another blue divider line with the help of the HR tag. -->
   <hr />
   <b>Terms &amp; Conditions</b>
   <p>
