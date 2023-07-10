@@ -15,7 +15,7 @@ Open a pull-request with any changes or new templates you'd like to add!
 ## Screenshots
 
 ![Invoice](/images/invoice.png)
-![Form](/images/pform.png)
+![Form](/images/form.png)
 ![Proposal](/images/proposal-page1.jpg)
 ![Brochure](/images/brochure-page1.jpg)
 ![Book](/images/book-page1.jpg)
